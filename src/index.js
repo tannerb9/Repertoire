@@ -1,11 +1,6 @@
-import React from "react";
+import React, { Router } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import Repertoire from "./Repertoire";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<Repertoire />, document.getElementById("root"));
