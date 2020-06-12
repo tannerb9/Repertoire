@@ -1,6 +1,12 @@
-import React, { Router } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import Repertoire from "./Repertoire";
+import "./index.css";
 
-ReactDOM.render(<Repertoire />, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <Repertoire />
+  </Router>,
+  document.getElementById("root")
+);
