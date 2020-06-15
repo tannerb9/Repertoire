@@ -1,14 +1,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { handleFieldChange } from "../../helpers/helpers";
+import DataManager from "../../modules/DataManager";
+import { handleFieldChange } from "../../helpers/functions";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({});
 
   const handleLogin = (evt) => {
     evt.preventDefault();
-    sessionStorage.setItem("credentials", JSON.stringify(credentials));
-    props.history.push("/");
+    DataManager.getByProp("users", "username", credentials.username).then(
+      (data) => {
+        if (data.length > 0) {
+          if (
+            data[0].username === credentials.username &&
+            data[0].password === credentials.password
+          ) {
+            sessionStorage.setItem("credentials", JSON.stringify(credentials));
+            props.setUser(credentials);
+            props.history.push("/recipes");
+          } else {
+            window.alert(
+              "Username or password is incorrect. Please try again."
+            );
+          }
+        } else {
+          window.alert(
+            "User does not exist. Please try again or register a new account."
+          );
+        }
+      }
+    );
   };
 
   return (
@@ -23,8 +44,7 @@ const Login = (props) => {
             }
             id="username"
             required
-            autoFocus=""
-            placeholder="Username"
+            autoFocus
           />
           <br />
           <label htmlFor="inputPassword">Password </label>
@@ -35,7 +55,6 @@ const Login = (props) => {
               handleFieldChange(evt, credentials, setCredentials)
             }
             required
-            placeholder="Password"
           />
         </div>
         <button type="submit">Sign In</button>
