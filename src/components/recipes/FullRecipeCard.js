@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import DataManager from "../../modules/DataManager";
-// import RecipeNavBar from "../navbars/RecipeNavBar";
 
 const FullRecipeCard = (props) => {
   const [recipe, setRecipe] = useState({});
