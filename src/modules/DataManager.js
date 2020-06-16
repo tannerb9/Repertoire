@@ -9,8 +9,10 @@ export default {
       data.json()
     );
   },
-  getAll(tab) {
-    return fetch(`${remoteURL}/${tab}`).then((data) => data.json());
+  getUsersRecipes(id) {
+    return fetch(`${remoteURL}/users/${id}?_embed=recipes`).then((data) =>
+      data.json()
+    );
   },
   getByProp(tab, prop, val) {
     return fetch(`${remoteURL}/${tab}?${prop}=${val}`).then((data) =>
