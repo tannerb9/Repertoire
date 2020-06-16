@@ -11,7 +11,7 @@ const RecipeMiniCard = (props) => {
       </picture> */}
         <p>Prep Time: {props.recipe.prepTime}</p>
         <p>Cook Time: {props.recipe.cookTime}</p>
-        <Link to={`/recipes/${props.recipe.id}`}>
+        <Link to={`/recipe/${props.recipe.id}`}>
           <button>Details</button>
         </Link>
       </div>
