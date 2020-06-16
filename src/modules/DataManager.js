@@ -4,6 +4,11 @@ export default {
   get(tab, id) {
     return fetch(`${remoteURL}/${tab}/${id}`).then((data) => data.json());
   },
+  getWithObjs(tab, id, objs) {
+    return fetch(`${remoteURL}/${tab}/${id}?_embed=${objs}`).then((data) =>
+      data.json()
+    );
+  },
   getAll(tab) {
     return fetch(`${remoteURL}/${tab}`).then((data) => data.json());
   },

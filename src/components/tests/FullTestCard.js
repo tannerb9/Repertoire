@@ -2,32 +2,32 @@ import React, { useState, useEffect } from "react";
 import DataManager from "../../modules/DataManager";
 // import RecipeNavBar from "../navbars/RecipeNavBar";
 
-const FullRecipeCard = (props) => {
-  const [recipe, setRecipe] = useState({});
+const FullTestCard = (props) => {
+  const [test, setTest] = useState({});
   const [ingredients, setIngredients] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     DataManager.getWithObjs(
       "recipes",
-      props.match.params.recipeId,
+      props.match.params.testId,
       "ingredients"
-    ).then((recipe) => {
-      setRecipe({
-        title: recipe.title,
-        prepTime: recipe.prepTime,
-        cookTime: recipe.cookTime,
+    ).then((test) => {
+      setTest({
+        title: test.title,
+        prepTime: test.prepTime,
+        cookTime: test.cookTime,
       });
-      setIngredients(recipe.ingredients);
+      setIngredients(test.ingredients);
     });
-  }, [props.match.params.recipeId]);
+  }, [props.match.params.testId]);
 
   return (
     <>
       <div>
-        <h3>{recipe.title}</h3>
-        <p>Prep Time: {recipe.prepTime}</p>
-        <p>Cook Time: {recipe.cookTime}</p>
+        <h3>{test.title}</h3>
+        <p>Prep Time: {test.prepTime}</p>
+        <p>Cook Time: {test.cookTime}</p>
       </div>
       <div>
         <h3>Ingredients</h3>
@@ -36,17 +36,17 @@ const FullRecipeCard = (props) => {
             <p key={ingredient.id}>{ingredient.info}</p>
           ))}
         </div>
+        <button
+          type="button"
+          onClick={() => {
+            window.history.back();
+          }}
+        >
+          Back
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={() => {
-          window.history.back();
-        }}
-      >
-        Back
-      </button>
     </>
   );
 };
 
-export default FullRecipeCard;
+export default FullTestCard;
