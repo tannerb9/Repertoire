@@ -20,6 +20,17 @@ const ApplicationViews = (props) => {
     <>
       <Route
         exact
+        path="/"
+        render={(props) => {
+          if (hasUser) {
+            return <RecipeList {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
         path="/login"
         render={(props) => <Login setUser={setUser} {...props} />}
       />
