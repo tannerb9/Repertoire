@@ -1,22 +1,34 @@
 import React, { useState } from "react";
 import DataManager from "../../modules/DataManager";
 import FormInputField from "./FormInputField";
+import DirectionInputField from "./DirectionInputField";
 import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
 const NewRecipeForm = (props) => {
   const emptyIngredient = { info: "" };
+  const emptyDirection = { info: "" };
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([{ ...emptyIngredient }]);
+  const [directions, setDirections] = useState([{ ...emptyDirection }]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const handleRecipeChange = (evt) =>
-  //   setRecipe({ ...recipe, [evt.target.name]: [evt.target.value] });
+  const appendItem = (arr, obj, func) => {
+    func([...arr, { ...obj }]);
+  };
+
+  const handleDynamicChange = (evt, arr, func) => {
+    const stateToChange = [...arr];
+    stateToChange[evt.target.dataset.idx][evt.target.className] =
+      evt.target.value;
+    func(stateToChange);
+  };
 
   const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
-
+    recipe.isTest = false;
+    recipe.recipeId = null;
     DataManager.post("recipes", recipe)
       .then((newRecipe) => {
         ingredients.forEach((ingredient) => {
@@ -25,17 +37,6 @@ const NewRecipeForm = (props) => {
         });
       })
       .then(() => props.history.push("/recipes"));
-  };
-
-  const appendIngredient = () => {
-    setIngredients([...ingredients, { ...emptyIngredient }]);
-  };
-
-  const handleDynamicChange = (evt) => {
-    const stateToChange = [...ingredients];
-    stateToChange[evt.target.dataset.idx][evt.target.className] =
-      evt.target.value;
-    setIngredients(stateToChange);
   };
 
   return (
@@ -70,13 +71,35 @@ const NewRecipeForm = (props) => {
               key={`ingredient-${idx}`}
               idx={idx}
               ingredients={ingredients}
-              handleDynamicChange={handleDynamicChange}
+              handleDynamicChange={(evt) =>
+                handleDynamicChange(evt, ingredients, setIngredients)
+              }
             />
           ))}
           <input
             type="button"
             value="Add Another Ingredient"
-            onClick={appendIngredient}
+            onClick={() =>
+              appendItem(ingredients, emptyIngredient, setIngredients)
+            }
+          />
+          <label htmlFor="direction">Directions</label>
+          {directions.map((val, idx) => (
+            <DirectionInputField
+              key={`direction-${idx}`}
+              idx={idx}
+              directions={directions}
+              handleDynamicChange={(evt) =>
+                handleDynamicChange(evt, directions, setDirections)
+              }
+            />
+          ))}
+          <input
+            type="button"
+            value="Add Another Direction"
+            onClick={() =>
+              appendItem(directions, emptyDirection, setDirections)
+            }
           />
           <button type="submit" disabled={isLoading}>
             Submit

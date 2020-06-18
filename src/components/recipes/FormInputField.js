@@ -11,7 +11,6 @@ const FormInputField = (props) => {
         data-idx={props.idx}
         id={ingId}
         className="info"
-        autoFocus
         value={props.ingredients[props.idx].ingredient}
         onChange={props.handleDynamicChange}
       />
