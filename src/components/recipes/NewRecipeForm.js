@@ -16,9 +16,15 @@ const NewRecipeForm = (props) => {
   const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
-    DataManager.post("recipes", recipe).then(() =>
-      props.history.push("/recipes")
-    );
+
+    DataManager.post("recipes", recipe)
+      .then((newRecipe) => {
+        ingredients.forEach((ingredient) => {
+          ingredient.recipeId = newRecipe.id;
+          DataManager.post("ingredients", ingredient);
+        });
+      })
+      .then(() => props.history.push("/recipes"));
   };
 
   const appendIngredient = () => {
@@ -72,7 +78,9 @@ const NewRecipeForm = (props) => {
             value="Add Another Ingredient"
             onClick={appendIngredient}
           />
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={isLoading}>
+            Submit
+          </button>
         </div>
       </fieldset>
     </form>
