@@ -9,8 +9,8 @@ const RecipeMiniCard = (props) => {
         {/* <picture>
         <img src={require(`./${}`)} alt={props.recipe.title} />
       </picture> */}
-        <p>Prep Time: {props.recipe.prepTime}</p>
-        <p>Cook Time: {props.recipe.cookTime}</p>
+        <p>Prep Time: {props.recipe.prepTime} mins</p>
+        <p>Cook Time: {props.recipe.cookTime} mins</p>
         <Link to={`/recipe/${props.recipe.id}`}>
           <button>Details</button>
         </Link>

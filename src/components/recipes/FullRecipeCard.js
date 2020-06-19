@@ -4,7 +4,6 @@ import DataManager from "../../modules/DataManager";
 const FullRecipeCard = (props) => {
   const [recipe, setRecipe] = useState({});
   const [ingredients, setIngredients] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     DataManager.getWithObjs(
@@ -25,8 +24,8 @@ const FullRecipeCard = (props) => {
     <>
       <div>
         <h3>{recipe.title}</h3>
-        <p>Prep Time: {recipe.prepTime}</p>
-        <p>Cook Time: {recipe.cookTime}</p>
+        <p>Prep Time: {recipe.prepTime} minutes</p>
+        <p>Cook Time: {recipe.cookTime} minutes</p>
       </div>
       <div>
         <h3>Ingredients</h3>

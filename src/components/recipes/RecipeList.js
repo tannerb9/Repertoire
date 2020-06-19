@@ -28,7 +28,7 @@ const RecipeList = (props) => {
       <button
         type="button"
         onClick={() => {
-          props.history.push("/recipes/new");
+          props.history.push("/recipe/new");
         }}
       >
         Add Recipe
