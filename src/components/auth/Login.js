@@ -16,7 +16,9 @@ const Login = (props) => {
             data[0].password === credentials.password
           ) {
             sessionStorage.setItem("credentials", JSON.stringify(credentials));
-            props.setUser(credentials);
+            console.log(credentials);
+            credentials.id = data[0].id;
+            props.setUser(credentials.id);
             props.history.push("/recipes");
           } else {
             window.alert(

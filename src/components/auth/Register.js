@@ -12,10 +12,13 @@ const Register = (props) => {
         if (data.length > 0) {
           window.alert("Username exists. Please enter a different username.");
         } else {
-          DataManager.post("users", credentials);
-          sessionStorage.setItem("credentials", JSON.stringify(credentials));
-          props.setUser(credentials);
-          props.history.push("/recipes");
+          DataManager.post("users", credentials).then((data) => {
+            sessionStorage.setItem("credentials", JSON.stringify(credentials));
+            console.log(credentials);
+            credentials.id = data.id;
+            props.setUser(credentials.id);
+            props.history.push("/recipes");
+          });
         }
       }
     );

@@ -4,10 +4,11 @@ import DataManager from "../../modules/DataManager";
 
 const RecipeList = (props) => {
   const [recipes, setRecipes] = useState([]);
+  const userId = JSON.parse(sessionStorage.credentials);
 
   const getRecipes = () => {
-    DataManager.getAll("recipes").then((recipesFromApi) => {
-      const notTests = recipesFromApi.filter(
+    DataManager.getUsersRecipes(userId).then((recipesFromApi) => {
+      const notTests = recipesFromApi.recipes.filter(
         (notTest) => notTest.isTest === false
       );
       setRecipes(notTests);
