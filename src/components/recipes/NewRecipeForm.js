@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import DataManager from "../../modules/DataManager";
 import FormInputField from "./FormInputField";
 import DirectionInputField from "./DirectionInputField";
+import NoteInputField from "./NoteInputField";
 import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
 const NewRecipeForm = (props) => {
   const emptyIngredient = { info: "" };
   const emptyDirection = { info: "" };
+  const emptyNote = { info: "" };
   const [recipe, setRecipe] = useState({});
-  const [ingredients, setIngredients] = useState([{ ...emptyIngredient }]);
   const [directions, setDirections] = useState([{ ...emptyDirection }]);
+  const [ingredients, setIngredients] = useState([{ ...emptyIngredient }]);
+  const [notes, setNotes] = useState([{ ...emptyNote }]);
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
@@ -29,11 +32,25 @@ const NewRecipeForm = (props) => {
     setIsLoading(true);
     recipe.isTest = false;
     recipe.recipeId = null;
+    let recipeId;
     DataManager.post("recipes", recipe)
       .then((newRecipe) => {
         ingredients.forEach((ingredient) => {
-          ingredient.recipeId = newRecipe.id;
+          recipeId = newRecipe.id;
+          ingredient.recipeId = recipeId;
           DataManager.post("ingredients", ingredient);
+        });
+      })
+      .then(() => {
+        notes.forEach((note) => {
+          note.recipeId = recipeId;
+          DataManager.post("notes", note);
+        });
+      })
+      .then(() => {
+        directions.forEach((direction) => {
+          direction.recipeId = recipeId;
+          DataManager.post("directions", direction);
         });
       })
       .then(() => props.history.push("/recipes"));
@@ -82,6 +99,22 @@ const NewRecipeForm = (props) => {
             onClick={() =>
               appendItem(ingredients, emptyIngredient, setIngredients)
             }
+          />
+          <label htmlFor="note">Notes</label>
+          {notes.map((val, idx) => (
+            <NoteInputField
+              key={`note-${idx}`}
+              idx={idx}
+              notes={notes}
+              handleDynamicChange={(evt) =>
+                handleDynamicChange(evt, notes, setNotes)
+              }
+            />
+          ))}
+          <input
+            type="button"
+            value="Add Another Note"
+            onClick={() => appendItem(notes, emptyNote, setNotes)}
           />
           <label htmlFor="direction">Directions</label>
           {directions.map((val, idx) => (
