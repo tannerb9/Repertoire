@@ -44,12 +44,7 @@ const ApplicationViews = (props) => {
         path="/recipes"
         render={(props) => {
           if (hasUser) {
-            return (
-              <RecipeList
-                // userId={parseInt(props.match.params.userId)}
-                {...props}
-              />
-            );
+            return <RecipeList {...props} />;
           } else {
             return <Redirect to="/login" />;
           }

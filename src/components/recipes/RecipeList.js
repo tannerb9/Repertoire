@@ -3,18 +3,12 @@ import MiniRecipeCard from "./MiniRecipeCard";
 import DataManager from "../../modules/DataManager";
 
 const RecipeList = (props) => {
-  // const [user, setUser] = useState({});
   const [recipes, setRecipes] = useState([]);
-
-  // const getUser = () => {
-  //   DataManager.get("users", props.match.params.userId).then((user) => {
-  //     setUser(user);
-  //   });
-  // };
+  const userId = JSON.parse(sessionStorage.credentials);
 
   const getRecipes = () => {
-    DataManager.getUsersRecipes(props.userId).then((recipesFromApi) => {
-      const notTests = recipesFromApi.filter(
+    DataManager.getUsersRecipes(userId).then((recipesFromApi) => {
+      const notTests = recipesFromApi.recipes.filter(
         (notTest) => notTest.isTest === false
       );
       setRecipes(notTests);

@@ -7,13 +7,12 @@ import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
 const NewRecipeForm = (props) => {
-  const emptyIngredient = { info: "" };
-  const emptyDirection = { info: "" };
-  const emptyNote = { info: "" };
+  const userId = JSON.parse(sessionStorage.credentials);
+  const emptyObj = { info: "" };
   const [recipe, setRecipe] = useState({});
-  const [directions, setDirections] = useState([{ ...emptyDirection }]);
-  const [ingredients, setIngredients] = useState([{ ...emptyIngredient }]);
-  const [notes, setNotes] = useState([{ ...emptyNote }]);
+  const [directions, setDirections] = useState([{ ...emptyObj }]);
+  const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
+  const [notes, setNotes] = useState([{ ...emptyObj }]);
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
@@ -30,6 +29,7 @@ const NewRecipeForm = (props) => {
   const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
+    recipe.userId = userId;
     recipe.isTest = false;
     recipe.recipeId = null;
     let recipeId;
@@ -96,9 +96,7 @@ const NewRecipeForm = (props) => {
           <input
             type="button"
             value="Add Another Ingredient"
-            onClick={() =>
-              appendItem(ingredients, emptyIngredient, setIngredients)
-            }
+            onClick={() => appendItem(ingredients, emptyObj, setIngredients)}
           />
           <label htmlFor="note">Notes</label>
           {notes.map((val, idx) => (
@@ -114,7 +112,7 @@ const NewRecipeForm = (props) => {
           <input
             type="button"
             value="Add Another Note"
-            onClick={() => appendItem(notes, emptyNote, setNotes)}
+            onClick={() => appendItem(notes, emptyObj, setNotes)}
           />
           <label htmlFor="direction">Directions</label>
           {directions.map((val, idx) => (
@@ -130,9 +128,7 @@ const NewRecipeForm = (props) => {
           <input
             type="button"
             value="Add Another Direction"
-            onClick={() =>
-              appendItem(directions, emptyDirection, setDirections)
-            }
+            onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
           <button type="submit" disabled={isLoading}>
             Submit
