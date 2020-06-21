@@ -16,6 +16,7 @@ const NewRecipeForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
+    // CREATE TERNARY HERE
     func([...arr, { ...obj }]);
   };
 
@@ -53,6 +54,7 @@ const NewRecipeForm = (props) => {
           DataManager.post("directions", direction);
         });
       })
+      //
       .then(() => props.history.push("/recipes"));
   };
 

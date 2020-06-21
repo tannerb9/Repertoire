@@ -9,16 +9,32 @@ import RecipeList from "./recipes/RecipeList";
 import RecipeNavBar from "./navbars/RecipeNavBar";
 import RecipeNotes from "./recipes/RecipeNotes";
 import FullTestCard from "./tests/FullTestCard";
+import NewTestForm from "./tests/NewTestForm";
 import TestDirections from "./tests/TestDirections";
 import TestList from "./tests/TestList";
 import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
+import GenForm from "./recipes/GenericForm";
 
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
   const setUser = props.setUser;
   return (
     <>
+      <Route
+        exact
+        path="/addgeneric"
+        render={(props) => {
+          return <GenForm inputText={"im adding"} isEdit={false} {...props} />;
+        }}
+      />
+      <Route
+        exact
+        path="/editgeneric"
+        render={(props) => {
+          return <GenForm inputText={"im editing"} isEdit={true} {...props} />;
+        }}
+      />
       <Route
         exact
         path="/"
@@ -115,6 +131,17 @@ const ApplicationViews = (props) => {
         render={(props) => {
           if (hasUser) {
             return <TestList {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/test/new"
+        render={(props) => {
+          if (hasUser) {
+            return <NewTestForm {...props} />;
           } else {
             return <Redirect to="/login" />;
           }
