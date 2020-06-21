@@ -4,10 +4,11 @@ import DataManager from "../../modules/DataManager";
 
 const TestList = (props) => {
   const [tests, setTests] = useState([]);
+  const userId = JSON.parse(sessionStorage.credentials);
 
   const getTests = () => {
-    DataManager.getUsersRecipes("tests").then((testsFromApi) => {
-      const areTests = testsFromApi.filter(
+    DataManager.getUsersRecipes(userId).then((testsFromApi) => {
+      const areTests = testsFromApi.recipes.filter(
         (checkTest) => checkTest.isTest === true
       );
       setTests(areTests);
@@ -27,10 +28,10 @@ const TestList = (props) => {
       <button
         type="button"
         onClick={() => {
-          props.history.push("/tests/new");
+          props.history.push("/test/new");
         }}
       >
-        Add Recipe
+        Add Test
       </button>
     </>
   );

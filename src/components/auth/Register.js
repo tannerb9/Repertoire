@@ -14,7 +14,6 @@ const Register = (props) => {
         } else {
           DataManager.post("users", credentials).then((data) => {
             sessionStorage.setItem("credentials", JSON.stringify(credentials));
-            console.log(credentials);
             credentials.id = data.id;
             props.setUser(credentials.id);
             props.history.push("/recipes");
