@@ -29,31 +29,29 @@ const NewTestForm = (props) => {
   const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
+    let id;
     recipe.userId = userId;
     recipe.isTest = true;
-    recipe.recipeId = null;
-    let recipeId;
+    recipe.originalRecipeId = null;
     DataManager.post("recipes", recipe)
       .then((newRecipe) => {
-        ingredients.forEach((ingredient) => {
-          recipeId = newRecipe.id;
-          ingredient.recipeId = recipeId;
-          DataManager.post("ingredients", ingredient);
-        });
+        id = newRecipe.id;
+        Promise.all([
+          ingredients.forEach((ingredient) => {
+            ingredient.recipeId = newRecipe.id;
+            DataManager.post("ingredients", ingredient);
+          }),
+          notes.forEach((note) => {
+            note.recipeId = newRecipe.id;
+            DataManager.post("notes", note);
+          }),
+          directions.forEach((direction) => {
+            direction.recipeId = newRecipe.id;
+            DataManager.post("directions", direction);
+          }),
+        ]);
       })
-      .then(() => {
-        notes.forEach((note) => {
-          note.recipeId = recipeId;
-          DataManager.post("notes", note);
-        });
-      })
-      .then(() => {
-        directions.forEach((direction) => {
-          direction.recipeId = recipeId;
-          DataManager.post("directions", direction);
-        });
-      })
-      .then(() => props.history.push("/tests"));
+      .then(() => props.history.push(`/test/${id}`));
   };
 
   return (

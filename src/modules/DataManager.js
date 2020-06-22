@@ -28,4 +28,9 @@ export default {
       body: JSON.stringify(obj),
     }).then((data) => data.json());
   },
+  delete(tab, id) {
+    return fetch(`${remoteURL}/${tab}/${id}`, {
+      method: "DELETE",
+    }).then((data) => data.json());
+  },
 };
