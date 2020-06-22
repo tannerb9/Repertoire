@@ -36,6 +36,15 @@ const FullRecipeCard = (props) => {
         </div>
       </div>
       <button
+        onClick={() => {
+          DataManager.delete("recipes", props.match.params.recipeId).then(
+            props.history.push("/recipes")
+          );
+        }}
+      >
+        Delete
+      </button>
+      <button
         type="button"
         onClick={() => {
           window.history.back();

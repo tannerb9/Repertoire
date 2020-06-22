@@ -7,7 +7,7 @@ const TestList = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
 
   const getTests = () => {
-    DataManager.getUsersRecipes(userId).then((testsFromApi) => {
+    return DataManager.getUsersRecipes(userId).then((testsFromApi) => {
       const areTests = testsFromApi.recipes.filter(
         (checkTest) => checkTest.isTest === true
       );

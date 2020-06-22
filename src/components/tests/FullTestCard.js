@@ -37,7 +37,15 @@ const FullTestCard = (props) => {
           ))}
         </div>
         <button
-          type="button"
+          onClick={() => {
+            DataManager.delete("recipes", props.match.params.testId).then(
+              props.history.push("/tests")
+            );
+          }}
+        >
+          Delete
+        </button>
+        <button
           onClick={() => {
             window.history.back();
           }}
