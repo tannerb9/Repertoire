@@ -11,7 +11,7 @@ const NoteInputField = (props) => {
         data-idx={props.idx}
         id={noteId}
         className="info"
-        value={props.notes[props.idx].note}
+        value={props.notes[props.idx].info}
         onChange={props.handleDynamicChange}
       />
     </div>

@@ -38,6 +38,13 @@ const FullTestCard = (props) => {
         </div>
         <button
           onClick={() => {
+            props.history.push(`/test/${props.testId}/edit`);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => {
             DataManager.delete("recipes", props.match.params.testId).then(
               props.history.push("/tests")
             );
