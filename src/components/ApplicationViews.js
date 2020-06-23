@@ -11,6 +11,7 @@ import RecipeNotes from "./recipes/RecipeNotes";
 import FullTestCard from "./tests/FullTestCard";
 import NewTestForm from "./tests/NewTestForm";
 import TestDirections from "./tests/TestDirections";
+import TestEditForm from "./tests/TestEditForm";
 import TestList from "./tests/TestList";
 import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
@@ -85,7 +86,10 @@ const ApplicationViews = (props) => {
             return (
               <>
                 <RecipeNavBar {...props} />
-                <FullRecipeCard {...props} />
+                <FullRecipeCard
+                  recipeId={props.match.params.recipeId}
+                  {...props}
+                />
               </>
             );
           } else {
@@ -155,7 +159,22 @@ const ApplicationViews = (props) => {
             return (
               <>
                 <TestNavBar {...props} />
-                <FullTestCard {...props} />
+                <FullTestCard testId={props.match.params.testId} {...props} />
+              </>
+            );
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/test/:testId(\d+)/edit"
+        render={(props) => {
+          if (hasUser) {
+            return (
+              <>
+                <TestEditForm {...props} />
               </>
             );
           } else {

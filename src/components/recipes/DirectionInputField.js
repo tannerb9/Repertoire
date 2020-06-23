@@ -11,7 +11,7 @@ const DirectionInputField = (props) => {
         data-idx={props.idx}
         id={dirId}
         className="info"
-        value={props.directions[props.idx].direction}
+        value={props.directions[props.idx].info}
         onChange={props.handleDynamicChange}
       />
     </div>

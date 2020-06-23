@@ -33,4 +33,13 @@ export default {
       method: "DELETE",
     }).then((data) => data.json());
   },
+  edit(tab, editedObj) {
+    return fetch(`${remoteURL}/${tab}/${editedObj.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedObj),
+    }).then((data) => data.json());
+  },
 };

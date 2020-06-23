@@ -47,6 +47,13 @@ const FullTestCard = (props) => {
         </button>
         <button
           onClick={() => {
+            props.history.push(`/test/${props.testId}/edit`);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          onClick={() => {
             window.history.back();
           }}
         >

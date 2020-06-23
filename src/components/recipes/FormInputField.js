@@ -11,7 +11,7 @@ const FormInputField = (props) => {
         data-idx={props.idx}
         id={ingId}
         className="info"
-        value={props.ingredients[props.idx].ingredient}
+        value={props.ingredients[props.idx].info}
         onChange={props.handleDynamicChange}
       />
     </div>
