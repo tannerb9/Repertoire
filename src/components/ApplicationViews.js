@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import FullRecipeCard from "./recipes/FullRecipeCard";
 import NewRecipeForm from "./recipes/NewRecipeForm";
 import RecipeDirections from "./recipes/RecipeDirections";
+import RecipeEditForm from "./recipes/RecipeEditForm";
 import RecipeList from "./recipes/RecipeList";
 import RecipeNavBar from "./navbars/RecipeNavBar";
 import RecipeNotes from "./recipes/RecipeNotes";
@@ -90,6 +91,21 @@ const ApplicationViews = (props) => {
                   recipeId={props.match.params.recipeId}
                   {...props}
                 />
+              </>
+            );
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/recipe/:recipeId(\d+)/edit"
+        render={(props) => {
+          if (hasUser) {
+            return (
+              <>
+                <RecipeEditForm {...props} />
               </>
             );
           } else {

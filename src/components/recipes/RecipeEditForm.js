@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DataManager from "../../modules/DataManager";
-import FormInputField from "../recipes/FormInputField";
-import DirectionInputField from "../recipes/DirectionInputField";
-import NoteInputField from "../recipes/NoteInputField";
+import FormInputField from "./FormInputField";
+import DirectionInputField from "./DirectionInputField";
+import NoteInputField from "./NoteInputField";
 import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
-const TestEditForm = (props) => {
+const RecipeEditForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
   const emptyObj = { info: "" };
   const [recipe, setRecipe] = useState({
@@ -37,17 +37,17 @@ const TestEditForm = (props) => {
     evt.preventDefault();
     setIsLoading(true);
 
-    const editedTest = {
+    const editedRecipe = {
       title: recipe.title,
       prepTime: recipe.prepTime,
       cookTime: recipe.cookTime,
       userId: userId,
-      isTest: true,
+      isTest: false,
       originalRecipeId: null,
-      id: props.match.params.testId,
+      id: props.match.params.recipeId,
     };
 
-    DataManager.edit("recipes", editedTest)
+    DataManager.edit("recipes", editedRecipe)
       .then((recipe) => {
         Promise.all([
           ingredients.forEach((ingredient) => {
@@ -76,13 +76,13 @@ const TestEditForm = (props) => {
           }),
         ]);
       })
-      .then(() => props.history.push(`/test/${props.match.params.testId}`));
+      .then(() => props.history.push(`/recipe/${props.match.params.recipeId}`));
   };
 
   const updateExistingObj = (tab, obj) => {
     const editedObj = {
       info: obj.info,
-      recipeId: parseInt(props.match.params.testId),
+      recipeId: parseInt(props.match.params.recipeId),
       id: obj.id,
     };
 
@@ -92,36 +92,38 @@ const TestEditForm = (props) => {
   useEffect(() => {
     DataManager.getWithObjs(
       "recipes",
-      props.match.params.testId,
+      props.match.params.recipeId,
       "ingredients"
     ).then((recipe) => {
       setRecipe(recipe);
       setIngredients(recipe.ingredients);
       setIsLoading(false);
     });
-  }, [props.match.params.testId]);
-
-  useEffect(() => {
-    DataManager.getWithObjs("recipes", props.match.params.testId, "notes").then(
-      (recipe) => {
-        setRecipe(recipe);
-        setNotes(recipe.notes);
-        setIsLoading(false);
-      }
-    );
-  }, [props.match.params.testId]);
+  }, [props.match.params.recipeId]);
 
   useEffect(() => {
     DataManager.getWithObjs(
       "recipes",
-      props.match.params.testId,
+      props.match.params.recipeId,
+      "notes"
+    ).then((recipe) => {
+      setRecipe(recipe);
+      setNotes(recipe.notes);
+      setIsLoading(false);
+    });
+  }, [props.match.params.recipeId]);
+
+  useEffect(() => {
+    DataManager.getWithObjs(
+      "recipes",
+      props.match.params.recipeId,
       "directions"
     ).then((recipe) => {
       setRecipe(recipe);
       setDirections(recipe.directions);
       setIsLoading(false);
     });
-  }, [props.match.params.testId]);
+  }, [props.match.params.recipeId]);
 
   return (
     <form onSubmit={updateAll}>
@@ -212,4 +214,4 @@ const TestEditForm = (props) => {
   );
 };
 
-export default TestEditForm;
+export default RecipeEditForm;

@@ -6,18 +6,14 @@ const RecipeList = (props) => {
   const [recipes, setRecipes] = useState([]);
   const userId = JSON.parse(sessionStorage.credentials);
 
-  const getRecipes = () => {
-    return DataManager.getUsersRecipes(userId).then((recipesFromApi) => {
+  useEffect(() => {
+    DataManager.getUsersRecipes(userId).then((recipesFromApi) => {
       const notTests = recipesFromApi.recipes.filter(
         (notTest) => notTest.isTest === false
       );
       setRecipes(notTests);
     });
-  };
-
-  useEffect(() => {
-    getRecipes();
-  }, []);
+  }, [userId]);
 
   return (
     <>
