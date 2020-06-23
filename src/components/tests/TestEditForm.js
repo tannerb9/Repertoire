@@ -26,9 +26,25 @@ const TestEditForm = (props) => {
     func(stateToChange);
   };
 
-  const updateExistingRecipe = (evt) => {
+  const updateAll = (evt) => {
     evt.preventDefault();
+
+    updateExistingRecipe();
+    ingredients.forEach((ingredient) => {
+      updateExistingObj(evt, "ingredients", ingredient);
+    });
+    notes.forEach((note) => {
+      updateExistingObj(evt, "notes", note);
+    });
+    directions.forEach((direction) => {
+      updateExistingObj(evt, "directions", direction);
+    });
+    props.history.push(`/recipes/${props.match.params.testId}`);
+  };
+
+  const updateExistingRecipe = () => {
     setIsLoading(true);
+
     const editedTest = {
       title: recipe.title,
       prepTime: recipe.prepTime,
@@ -40,40 +56,18 @@ const TestEditForm = (props) => {
     };
 
     DataManager.edit("recipes", editedTest);
-    // .then(() => props.history.push("/employees"));
   };
 
-  // const updateExistingObj = (evt, obj) => {
-  //   evt.preventDefault();
-  //   set
-  // }
-
-  const constructRecipe = (evt) => {
+  const updateExistingObj = (evt, tab, obj) => {
     evt.preventDefault();
-    setIsLoading(true);
-    let id;
-    recipe.userId = userId;
-    recipe.isTest = true;
-    recipe.originalRecipeId = null;
-    DataManager.edit("recipes", recipe)
-      .then((newRecipe) => {
-        id = newRecipe.id;
-        Promise.all([
-          ingredients.forEach((ingredient) => {
-            ingredient.recipeId = newRecipe.id;
-            DataManager.post("ingredients", ingredient);
-          }),
-          notes.forEach((note) => {
-            note.recipeId = newRecipe.id;
-            DataManager.post("notes", note);
-          }),
-          directions.forEach((direction) => {
-            direction.recipeId = newRecipe.id;
-            DataManager.post("directions", direction);
-          }),
-        ]);
-      })
-      .then(() => props.history.push(`/test/${id}`));
+
+    const editedObj = {
+      info: obj.info,
+      recipeId: parseInt(props.match.params.testId),
+      id: obj.id,
+    };
+
+    DataManager.edit(tab, editedObj);
   };
 
   useEffect(() => {
@@ -111,7 +105,7 @@ const TestEditForm = (props) => {
   }, [props.match.params.testId]);
 
   return (
-    <form onSubmit={updateExistingRecipe}>
+    <form onSubmit={updateAll}>
       <fieldset>
         <div className="formgrid">
           <label htmlFor="title">Title</label>
