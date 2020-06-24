@@ -8,7 +8,7 @@ import "../../styles/forms.css";
 
 const TestEditForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
-  const emptyObj = { info: "" };
+  const emptyObj = { info: "", id: 0, recipeId: 0 };
   const [recipe, setRecipe] = useState({
     title: "",
     prepTime: 0,
@@ -20,10 +20,17 @@ const TestEditForm = (props) => {
   const [directions, setDirections] = useState([{ ...emptyObj }]);
   const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
   const [notes, setNotes] = useState([{ ...emptyObj }]);
+  // const [recipeStatus, setRecipeStatus] = useState({ isTest: false });
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
     func([...arr, { ...obj }]);
+  };
+
+  const removeItem = (arr, idx, func) => {
+    const copyOfArr = [...arr];
+    copyOfArr.splice(idx, 1);
+    func(copyOfArr);
   };
 
   const handleDynamicChange = (evt, arr, func) => {
@@ -88,6 +95,10 @@ const TestEditForm = (props) => {
 
     DataManager.edit(tab, editedObj);
   };
+
+  // const changeRecipeStatus = () {
+  //   DataManager.get("recipes", recipe.id).then
+  // }
 
   useEffect(() => {
     DataManager.getWithObjs(
@@ -157,8 +168,10 @@ const TestEditForm = (props) => {
             <FormInputField
               key={`ingredient-${idx}`}
               idx={idx}
-              value={ingredients[idx].info}
+              removeItem={removeItem}
               ingredients={ingredients}
+              setIngredients={setIngredients}
+              value={ingredients[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, ingredients, setIngredients)
               }
@@ -174,8 +187,10 @@ const TestEditForm = (props) => {
             <NoteInputField
               key={`note-${idx}`}
               idx={idx}
-              value={notes[idx].info}
+              removeItem={removeItem}
               notes={notes}
+              setNotes={setNotes}
+              value={notes[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, notes, setNotes)
               }
@@ -191,8 +206,10 @@ const TestEditForm = (props) => {
             <DirectionInputField
               key={`direction-${idx}`}
               idx={idx}
-              value={directions[idx].info}
+              removeItem={removeItem}
               directions={directions}
+              setDirections={setDirections}
+              value={directions[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, directions, setDirections)
               }
@@ -203,6 +220,25 @@ const TestEditForm = (props) => {
             value="Add Another Direction"
             onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
+          {/* <div>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                value={(recipe.isTest = false)}
+              />
+              Recipe
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={recipe.isTest === true}
+                value={true}
+              />
+              Test
+            </label>
+          </div> */}
           <button type="submit" disabled={isLoading}>
             Submit
           </button>

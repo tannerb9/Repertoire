@@ -14,6 +14,14 @@ const DirectionInputField = (props) => {
         value={props.directions[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={(evt) => {
+          evt.preventDefault();
+          props.removeItem(props.directions, props.idx, props.setDirections);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };

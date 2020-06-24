@@ -1,9 +1,11 @@
 import React from "react";
 
 const FormInputField = (props) => {
+  // const [deletes, setDeletes] = useState([]);
   const ingId = `ingredient-${props.idx}`;
+
   return (
-    <div key={`ingredient-${props.idx}`}>
+    <div className="hidden" key={`ingredient-${props.idx}`}>
       <label htmlFor={ingId}>{`#${props.idx + 1}`}</label>
       <input
         type="text"
@@ -14,6 +16,14 @@ const FormInputField = (props) => {
         value={props.ingredients[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={(evt) => {
+          evt.preventDefault();
+          props.removeItem(props.ingredients, props.idx, props.setIngredients);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };

@@ -14,6 +14,14 @@ const NoteInputField = (props) => {
         value={props.notes[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={(evt) => {
+          evt.preventDefault();
+          props.removeItem(props.notes, props.idx, props.setNotes);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };
