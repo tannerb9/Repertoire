@@ -8,7 +8,7 @@ import "../../styles/forms.css";
 
 const RecipeEditForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
-  const emptyObj = { info: "" };
+  const emptyObj = { info: "", id: 0, recipeId: 0 };
   const [recipe, setRecipe] = useState({
     title: "",
     prepTime: 0,
@@ -24,6 +24,12 @@ const RecipeEditForm = (props) => {
 
   const appendItem = (arr, obj, func) => {
     func([...arr, { ...obj }]);
+  };
+
+  const removeItem = (arr, idx, func) => {
+    const copyOfArr = [...arr];
+    copyOfArr.splice(idx, 1);
+    func(copyOfArr);
   };
 
   const handleDynamicChange = (evt, arr, func) => {
@@ -159,8 +165,10 @@ const RecipeEditForm = (props) => {
             <FormInputField
               key={`ingredient-${idx}`}
               idx={idx}
-              value={ingredients[idx].info}
+              removeItem={removeItem}
               ingredients={ingredients}
+              setIngredients={setIngredients}
+              value={ingredients[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, ingredients, setIngredients)
               }
@@ -176,8 +184,10 @@ const RecipeEditForm = (props) => {
             <NoteInputField
               key={`note-${idx}`}
               idx={idx}
-              value={notes[idx].info}
+              removeItem={removeItem}
               notes={notes}
+              setNotes={setNotes}
+              value={notes[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, notes, setNotes)
               }
@@ -193,8 +203,10 @@ const RecipeEditForm = (props) => {
             <DirectionInputField
               key={`direction-${idx}`}
               idx={idx}
-              value={directions[idx].info}
+              removeItem={removeItem}
               directions={directions}
+              setDirections={setDirections}
+              value={directions[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, directions, setDirections)
               }

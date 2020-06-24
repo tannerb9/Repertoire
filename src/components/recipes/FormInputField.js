@@ -1,10 +1,11 @@
 import React from "react";
-import DataManager from "../../modules/DataManager";
 
 const FormInputField = (props) => {
+  // const [deletes, setDeletes] = useState([]);
   const ingId = `ingredient-${props.idx}`;
+
   return (
-    <div key={`ingredient-${props.idx}`}>
+    <div className="hidden" key={`ingredient-${props.idx}`}>
       <label htmlFor={ingId}>{`#${props.idx + 1}`}</label>
       <input
         type="text"
@@ -16,8 +17,9 @@ const FormInputField = (props) => {
         onChange={props.handleDynamicChange}
       />
       <button
-        onClick={() => {
-          DataManager.delete("ingredients", props.ingredients[props.idx].id);
+        onClick={(evt) => {
+          evt.preventDefault();
+          props.removeItem(props.ingredients, props.idx, props.setIngredients);
         }}
       >
         X
