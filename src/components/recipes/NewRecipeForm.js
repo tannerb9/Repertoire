@@ -88,6 +88,7 @@ const NewRecipeForm = (props) => {
               key={`ingredient-${idx}`}
               idx={idx}
               ingredients={ingredients}
+              setIngredients={setIngredients}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, ingredients, setIngredients)
               }
@@ -104,6 +105,7 @@ const NewRecipeForm = (props) => {
               key={`note-${idx}`}
               idx={idx}
               notes={notes}
+              setNotes={setNotes}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, notes, setNotes)
               }
@@ -120,6 +122,7 @@ const NewRecipeForm = (props) => {
               key={`direction-${idx}`}
               idx={idx}
               directions={directions}
+              setDirections={setDirections}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, directions, setDirections)
               }
