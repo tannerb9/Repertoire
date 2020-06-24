@@ -16,6 +16,9 @@ const RecipeDirections = (props) => {
 
   return (
     <>
+      <div>
+        <h3>Directions</h3>
+      </div>
       <div className="container-directions">
         {directions.map((direction) => (
           <p key={direction.id}>{direction.info}</p>

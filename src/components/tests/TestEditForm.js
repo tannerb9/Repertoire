@@ -27,12 +27,6 @@ const TestEditForm = (props) => {
     func([...arr, { ...obj }]);
   };
 
-  const removeItem = (arr, idx, func) => {
-    const copyOfArr = [...arr];
-    copyOfArr.splice(idx, 1);
-    func(copyOfArr);
-  };
-
   const handleDynamicChange = (evt, arr, func) => {
     const stateToChange = [...arr];
     stateToChange[evt.target.dataset.idx][evt.target.className] =
@@ -48,57 +42,32 @@ const TestEditForm = (props) => {
       title: recipe.title,
       prepTime: recipe.prepTime,
       cookTime: recipe.cookTime,
-      userId: userId,
+      userId: parseInt(userId),
       isTest: true,
       originalRecipeId: null,
-      id: props.match.params.testId,
+      id: parseInt(props.match.params.testId),
     };
 
-    DataManager.edit("recipes", editedTest)
+    DataManager.delete("recipes", props.match.params.testId)
+      .then(() => DataManager.post("recipes", editedTest))
       .then((recipe) => {
         Promise.all([
           ingredients.forEach((ingredient) => {
-            if (ingredient.id) {
-              updateExistingObj("ingredients", ingredient);
-            } else {
-              ingredient.recipeId = recipe.id;
-              DataManager.post("ingredients", ingredient);
-            }
+            ingredient.recipeId = recipe.id;
+            DataManager.post("ingredients", ingredient);
           }),
           notes.forEach((note) => {
-            if (note.id) {
-              updateExistingObj("notes", note);
-            } else {
-              note.recipeId = recipe.id;
-              DataManager.post("notes", note);
-            }
+            note.recipeId = recipe.id;
+            DataManager.post("notes", note);
           }),
           directions.forEach((direction) => {
-            if (direction.id) {
-              updateExistingObj("directions", direction);
-            } else {
-              direction.recipeId = recipe.id;
-              DataManager.post("directions", direction);
-            }
+            direction.recipeId = recipe.id;
+            DataManager.post("directions", direction);
           }),
         ]);
       })
       .then(() => props.history.push(`/test/${props.match.params.testId}`));
   };
-
-  const updateExistingObj = (tab, obj) => {
-    const editedObj = {
-      info: obj.info,
-      recipeId: parseInt(props.match.params.testId),
-      id: obj.id,
-    };
-
-    DataManager.edit(tab, editedObj);
-  };
-
-  // const changeRecipeStatus = () {
-  //   DataManager.get("recipes", recipe.id).then
-  // }
 
   useEffect(() => {
     DataManager.getWithObjs(
@@ -168,7 +137,6 @@ const TestEditForm = (props) => {
             <FormInputField
               key={`ingredient-${idx}`}
               idx={idx}
-              removeItem={removeItem}
               ingredients={ingredients}
               setIngredients={setIngredients}
               value={ingredients[idx].info}
@@ -187,7 +155,6 @@ const TestEditForm = (props) => {
             <NoteInputField
               key={`note-${idx}`}
               idx={idx}
-              removeItem={removeItem}
               notes={notes}
               setNotes={setNotes}
               value={notes[idx].info}
@@ -206,7 +173,6 @@ const TestEditForm = (props) => {
             <DirectionInputField
               key={`direction-${idx}`}
               idx={idx}
-              removeItem={removeItem}
               directions={directions}
               setDirections={setDirections}
               value={directions[idx].info}

@@ -1,4 +1,5 @@
 import React from "react";
+import { removeItem } from "../../helpers/functions";
 
 const NoteInputField = (props) => {
   const noteId = `note-${props.idx}`;
@@ -17,7 +18,7 @@ const NoteInputField = (props) => {
       <button
         onClick={(evt) => {
           evt.preventDefault();
-          props.removeItem(props.notes, props.idx, props.setNotes);
+          removeItem(props.notes, props.idx, props.setNotes);
         }}
       >
         X

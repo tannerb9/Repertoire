@@ -1,4 +1,5 @@
 import React from "react";
+import { removeItem } from "../../helpers/functions";
 
 const DirectionInputField = (props) => {
   const dirId = `direction-${props.idx}`;
@@ -17,7 +18,7 @@ const DirectionInputField = (props) => {
       <button
         onClick={(evt) => {
           evt.preventDefault();
-          props.removeItem(props.directions, props.idx, props.setDirections);
+          removeItem(props.directions, props.idx, props.setDirections);
         }}
       >
         X

@@ -1,4 +1,5 @@
 import React from "react";
+import { removeItem } from "../../helpers/functions";
 
 const FormInputField = (props) => {
   // const [deletes, setDeletes] = useState([]);
@@ -19,7 +20,7 @@ const FormInputField = (props) => {
       <button
         onClick={(evt) => {
           evt.preventDefault();
-          props.removeItem(props.ingredients, props.idx, props.setIngredients);
+          removeItem(props.ingredients, props.idx, props.setIngredients);
         }}
       >
         X
