@@ -1,4 +1,5 @@
 import React from "react";
+import DataManager from "../../modules/DataManager";
 
 const DirectionInputField = (props) => {
   const dirId = `direction-${props.idx}`;
@@ -14,6 +15,13 @@ const DirectionInputField = (props) => {
         value={props.directions[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={() => {
+          DataManager.delete("directions", props.directions[props.idx].id);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };

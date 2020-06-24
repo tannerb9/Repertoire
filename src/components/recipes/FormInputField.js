@@ -1,4 +1,5 @@
 import React from "react";
+import DataManager from "../../modules/DataManager";
 
 const FormInputField = (props) => {
   const ingId = `ingredient-${props.idx}`;
@@ -14,6 +15,13 @@ const FormInputField = (props) => {
         value={props.ingredients[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={() => {
+          DataManager.delete("ingredients", props.ingredients[props.idx].id);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };

@@ -20,6 +20,7 @@ const TestEditForm = (props) => {
   const [directions, setDirections] = useState([{ ...emptyObj }]);
   const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
   const [notes, setNotes] = useState([{ ...emptyObj }]);
+  const [recipeStatus, setRecipeStatus] = useState({ isTest: false });
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
@@ -36,6 +37,8 @@ const TestEditForm = (props) => {
   const updateAll = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
+
+    console.log(recipe.id);
 
     const editedTest = {
       title: recipe.title,
@@ -88,6 +91,10 @@ const TestEditForm = (props) => {
 
     DataManager.edit(tab, editedObj);
   };
+
+  // const changeRecipeStatus = () {
+  //   DataManager.get("recipes", recipe.id).then
+  // }
 
   useEffect(() => {
     DataManager.getWithObjs(
@@ -203,6 +210,25 @@ const TestEditForm = (props) => {
             value="Add Another Direction"
             onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                value={(recipe.isTest = false)}
+              />
+              Recipe
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={recipe.isTest === true}
+                value={true}
+              />
+              Test
+            </label>
+          </div>
           <button type="submit" disabled={isLoading}>
             Submit
           </button>

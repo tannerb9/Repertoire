@@ -1,4 +1,5 @@
 import React from "react";
+import DataManager from "../../modules/DataManager";
 
 const NoteInputField = (props) => {
   const noteId = `note-${props.idx}`;
@@ -14,6 +15,13 @@ const NoteInputField = (props) => {
         value={props.notes[props.idx].info}
         onChange={props.handleDynamicChange}
       />
+      <button
+        onClick={() => {
+          DataManager.delete("notes", props.notes[props.idx].id);
+        }}
+      >
+        X
+      </button>
     </div>
   );
 };
