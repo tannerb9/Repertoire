@@ -20,7 +20,6 @@ const TestEditForm = (props) => {
   const [directions, setDirections] = useState([{ ...emptyObj }]);
   const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
   const [notes, setNotes] = useState([{ ...emptyObj }]);
-  // const [recipeStatus, setRecipeStatus] = useState({ isTest: false });
   const [isLoading, setIsLoading] = useState(false);
 
   const appendItem = (arr, obj, func) => {
@@ -43,7 +42,7 @@ const TestEditForm = (props) => {
       prepTime: recipe.prepTime,
       cookTime: recipe.cookTime,
       userId: parseInt(userId),
-      isTest: true,
+      isTest: recipe.isTest,
       originalRecipeId: null,
       id: parseInt(props.match.params.testId),
     };
@@ -51,22 +50,28 @@ const TestEditForm = (props) => {
     DataManager.delete("recipes", props.match.params.testId)
       .then(() => DataManager.post("recipes", editedTest))
       .then((recipe) => {
-        Promise.all([
-          ingredients.forEach((ingredient) => {
+        return Promise.all([
+          ...ingredients.map((ingredient) => {
             ingredient.recipeId = recipe.id;
-            DataManager.post("ingredients", ingredient);
+            return DataManager.post("ingredients", ingredient);
           }),
-          notes.forEach((note) => {
+          ...notes.map((note) => {
             note.recipeId = recipe.id;
-            DataManager.post("notes", note);
+            return DataManager.post("notes", note);
           }),
-          directions.forEach((direction) => {
+          ...directions.map((direction) => {
             direction.recipeId = recipe.id;
-            DataManager.post("directions", direction);
+            return DataManager.post("directions", direction);
           }),
         ]);
       })
-      .then(() => props.history.push(`/test/${props.match.params.testId}`));
+      .then(() => {
+        if (recipe.isTest === true) {
+          props.history.push(`/test/${props.match.params.testId}`);
+        } else {
+          props.history.push(`/recipe/${props.match.params.testId}`);
+        }
+      });
   };
 
   useEffect(() => {
@@ -77,7 +82,6 @@ const TestEditForm = (props) => {
     ).then((recipe) => {
       setRecipe(recipe);
       setIngredients(recipe.ingredients);
-      setIsLoading(false);
     });
   }, [props.match.params.testId]);
 
@@ -86,7 +90,6 @@ const TestEditForm = (props) => {
       (recipe) => {
         setRecipe(recipe);
         setNotes(recipe.notes);
-        setIsLoading(false);
       }
     );
   }, [props.match.params.testId]);
@@ -99,7 +102,6 @@ const TestEditForm = (props) => {
     ).then((recipe) => {
       setRecipe(recipe);
       setDirections(recipe.directions);
-      setIsLoading(false);
     });
   }, [props.match.params.testId]);
 
@@ -186,12 +188,22 @@ const TestEditForm = (props) => {
             value="Add Another Direction"
             onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
-          {/* <div>
+          <div>
             <label>
               <input
                 type="radio"
                 name="choice"
-                value={(recipe.isTest = false)}
+                checked={recipe.isTest === false}
+                onChange={() =>
+                  setRecipe({
+                    title: recipe.title,
+                    prepTime: recipe.prepTime,
+                    cookTime: recipe.cookTime,
+                    userId: recipe.userId,
+                    isTest: false,
+                    originalRecipeId: recipe.originalRecipeId,
+                  })
+                }
               />
               Recipe
             </label>
@@ -200,11 +212,20 @@ const TestEditForm = (props) => {
                 type="radio"
                 name="choice"
                 checked={recipe.isTest === true}
-                value={true}
+                onChange={() =>
+                  setRecipe({
+                    title: recipe.title,
+                    prepTime: recipe.prepTime,
+                    cookTime: recipe.cookTime,
+                    userId: recipe.userId,
+                    isTest: true,
+                    originalRecipeId: recipe.originalRecipeId,
+                  })
+                }
               />
               Test
             </label>
-          </div> */}
+          </div>
           <button type="submit" disabled={isLoading}>
             Submit
           </button>

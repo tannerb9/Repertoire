@@ -34,9 +34,6 @@ export default {
       method: "DELETE",
     }).then((data) => data.json());
   },
-  // deleteRelatedData(tab, id, objs) {
-  //   return fetch(`${remoteURL}/${tab}/${id}?_embed=${objs}`)
-  // }
   edit(tab, editedObj) {
     return fetch(`${remoteURL}/${tab}/${editedObj.id}`, {
       method: "PUT",
