@@ -42,7 +42,7 @@ const RecipeEditForm = (props) => {
       prepTime: recipe.prepTime,
       cookTime: recipe.cookTime,
       userId: parseInt(userId),
-      isTest: false,
+      isTest: recipe.isTest,
       originalRecipeId: null,
       id: parseInt(props.match.params.recipeId),
     };
@@ -50,22 +50,28 @@ const RecipeEditForm = (props) => {
     DataManager.delete("recipes", props.match.params.recipeId)
       .then(() => DataManager.post("recipes", editedRecipe))
       .then((recipe) => {
-        Promise.all([
-          ingredients.forEach((ingredient) => {
+        return Promise.all([
+          ...ingredients.map((ingredient) => {
             ingredient.recipeId = recipe.id;
-            DataManager.post("ingredients", ingredient);
+            return DataManager.post("ingredients", ingredient);
           }),
-          notes.forEach((note) => {
+          ...notes.map((note) => {
             note.recipeId = recipe.id;
-            DataManager.post("notes", note);
+            return DataManager.post("notes", note);
           }),
-          directions.forEach((direction) => {
+          ...directions.map((direction) => {
             direction.recipeId = recipe.id;
-            DataManager.post("directions", direction);
+            return DataManager.post("directions", direction);
           }),
         ]);
       })
-      .then(() => props.history.push(`/recipe/${props.match.params.recipeId}`));
+      .then(() => {
+        if (recipe.isTest === false) {
+          props.history.push(`/recipe/${props.match.params.recipeId}`);
+        } else {
+          props.history.push(`/test/${props.match.params.recipeId}`);
+        }
+      });
   };
 
   useEffect(() => {
@@ -76,7 +82,6 @@ const RecipeEditForm = (props) => {
     ).then((recipe) => {
       setRecipe(recipe);
       setIngredients(recipe.ingredients);
-      setIsLoading(false);
     });
   }, [props.match.params.recipeId]);
 
@@ -88,7 +93,6 @@ const RecipeEditForm = (props) => {
     ).then((recipe) => {
       setRecipe(recipe);
       setNotes(recipe.notes);
-      setIsLoading(false);
     });
   }, [props.match.params.recipeId]);
 
@@ -100,7 +104,6 @@ const RecipeEditForm = (props) => {
     ).then((recipe) => {
       setRecipe(recipe);
       setDirections(recipe.directions);
-      setIsLoading(false);
     });
   }, [props.match.params.recipeId]);
 
@@ -187,6 +190,44 @@ const RecipeEditForm = (props) => {
             value="Add Another Direction"
             onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={recipe.isTest === false}
+                onChange={() =>
+                  setRecipe({
+                    title: recipe.title,
+                    prepTime: recipe.prepTime,
+                    cookTime: recipe.cookTime,
+                    userId: recipe.userId,
+                    isTest: false,
+                    originalRecipeId: recipe.originalRecipeId,
+                  })
+                }
+              />
+              Recipe
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="choice"
+                checked={recipe.isTest === true}
+                onChange={() =>
+                  setRecipe({
+                    title: recipe.title,
+                    prepTime: recipe.prepTime,
+                    cookTime: recipe.cookTime,
+                    userId: recipe.userId,
+                    isTest: true,
+                    originalRecipeId: recipe.originalRecipeId,
+                  })
+                }
+              />
+              Test
+            </label>
+          </div>
           <button type="submit" disabled={isLoading}>
             Submit
           </button>
