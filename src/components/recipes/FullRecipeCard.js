@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataManager from "../../modules/DataManager";
+import "../../styles/cards.css";
 
 const FullRecipeCard = (props) => {
   const [recipe, setRecipe] = useState({});
@@ -40,7 +41,7 @@ const FullRecipeCard = (props) => {
           props.history.push(`/recipe/${props.recipeId}/edit`);
         }}
       >
-        Edit
+        &#x270e; Edit
       </button>
       <button
         onClick={() => {
@@ -49,16 +50,16 @@ const FullRecipeCard = (props) => {
           );
         }}
       >
-        Delete
+        &#x2718; Delete
       </button>
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           window.history.back();
         }}
       >
         Back
-      </button>
+      </button> */}
     </>
   );
 };

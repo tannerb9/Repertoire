@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/cards.css";
 
 const MiniVersionCard = (props) => {
   return (

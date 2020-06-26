@@ -11,3 +11,18 @@
   width: 100%;
   background-color: white;
 }
+
+.nav-link:visited {
+  color: rgb(32, 34, 36);
+}
+
+.nav-link:active {
+  background-color: slategray;
+}
+
+.brandName {
+  margin: auto;
+  margin-right: 57px;
+  padding-bottom: 15px;
+  color: rgb(43, 45, 48);
+}

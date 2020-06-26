@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MiniVersionCard from "./MiniVersionCard";
 import DataManager from "../../modules/DataManager";
+import "../../styles/lists.css";
 
 const VersionList = (props) => {
   const [versions, setVersions] = useState([]);
@@ -18,18 +19,18 @@ const VersionList = (props) => {
   return (
     <>
       <div className="container-cards">
-        <h1 className="versionsHeader">Version History</h1>
+        <h3 className="versionsHeader">Version History</h3>
         {versions.map((version) => (
           <MiniVersionCard key={version.id} version={version} {...props} />
         ))}
       </div>
       <button
-        type="button"
+        className="add-button"
         onClick={() => {
           props.history.push(`/test/${props.match.params.testId}/versions/new`);
         }}
       >
-        New Version
+        &#x2b;
       </button>
     </>
   );

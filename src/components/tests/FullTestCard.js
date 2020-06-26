@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataManager from "../../modules/DataManager";
-// import RecipeNavBar from "../navbars/RecipeNavBar";
+import "../../styles/cards.css";
 
 const FullTestCard = (props) => {
   const [test, setTest] = useState({});
@@ -40,7 +40,7 @@ const FullTestCard = (props) => {
             props.history.push(`/test/${props.testId}/edit`);
           }}
         >
-          Edit
+          &#x270e; Edit
         </button>
         <button
           onClick={() => {
@@ -49,15 +49,15 @@ const FullTestCard = (props) => {
             );
           }}
         >
-          Delete
+          &#x2718; Delete
         </button>
-        <button
+        {/* <button
           onClick={() => {
             window.history.back();
           }}
         >
           Back
-        </button>
+        </button> */}
       </div>
     </>
   );
