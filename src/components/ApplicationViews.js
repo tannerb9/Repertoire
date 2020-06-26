@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import TopNavBar from "./navbars/TopNavBar";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import FullRecipeCard from "./recipes/FullRecipeCard";
@@ -42,9 +43,9 @@ const ApplicationViews = (props) => {
       <Route
         exact
         path="/"
-        render={(props) => {
+        render={() => {
           if (hasUser) {
-            return <RecipeList {...props} />;
+            return <Redirect to="/recipes" />;
           } else {
             return <Redirect to="/login" />;
           }
@@ -64,7 +65,12 @@ const ApplicationViews = (props) => {
         path="/recipes"
         render={(props) => {
           if (hasUser) {
-            return <RecipeList {...props} />;
+            return (
+              <>
+                <TopNavBar />
+                <RecipeList {...props} />
+              </>
+            );
           } else {
             return <Redirect to="/login" />;
           }
@@ -152,7 +158,12 @@ const ApplicationViews = (props) => {
         path="/tests"
         render={(props) => {
           if (hasUser) {
-            return <TestList {...props} />;
+            return (
+              <>
+                <TopNavBar />
+                <TestList {...props} />
+              </>
+            );
           } else {
             return <Redirect to="/login" />;
           }
@@ -163,7 +174,12 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/versions"
         render={(props) => {
           if (hasUser) {
-            return <VersionList {...props} />;
+            return (
+              <>
+                <TopNavBar />
+                <VersionList {...props} />
+              </>
+            );
           } else {
             return <Redirect to="/login" />;
           }

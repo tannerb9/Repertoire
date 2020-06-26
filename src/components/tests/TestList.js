@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MiniTestCard from "./MiniTestCard";
 import DataManager from "../../modules/DataManager";
+import "../../styles/lists.css";
 
 const TestList = (props) => {
   const [tests, setTests] = useState([]);
@@ -19,17 +20,18 @@ const TestList = (props) => {
   return (
     <>
       <div className="container-cards">
+        <h3 className="tab">Tests</h3>
         {tests.map((test) => (
           <MiniTestCard key={test.id} test={test} {...props} />
         ))}
       </div>
       <button
-        type="button"
+        className="add-button"
         onClick={() => {
           props.history.push("/test/new");
         }}
       >
-        Add Test
+        &#x2b;
       </button>
     </>
   );

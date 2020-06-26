@@ -2,7 +2,6 @@ import React from "react";
 import { removeItem } from "../../helpers/functions";
 
 const FormInputField = (props) => {
-  // const [deletes, setDeletes] = useState([]);
   const ingId = `ingredient-${props.idx}`;
 
   return (
