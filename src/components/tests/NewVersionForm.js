@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DataManager from "../../modules/DataManager";
 import FormInputField from "../recipes/FormInputField";
 import DirectionInputField from "../recipes/DirectionInputField";
@@ -6,17 +6,17 @@ import NoteInputField from "../recipes/NoteInputField";
 import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
-const TestEditForm = (props) => {
+const NewVersionForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
-  const emptyObj = { info: "", id: 0, recipeId: 0 };
+  const emptyObj = { info: "" };
   const [recipe, setRecipe] = useState({
     title: "",
     prepTime: 0,
     cookTime: 0,
-    versionNumber: 0,
     userId: 0,
     isTest: false,
-    originalRecipeId: null,
+    versionNumber: 0,
+    originalRecipeId: 0,
   });
   const [directions, setDirections] = useState([{ ...emptyObj }]);
   const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
@@ -34,46 +34,44 @@ const TestEditForm = (props) => {
     func(stateToChange);
   };
 
-  const updateAll = (evt) => {
+  const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
 
-    const editedTest = {
+    const recipeFromState = {
       title: recipe.title,
       prepTime: recipe.prepTime,
       cookTime: recipe.cookTime,
-      userId: parseInt(userId),
-      isTest: recipe.isTest,
-      versionNumber: recipe.versionNumber,
-      originalRecipeId: recipe.originalRecipeId,
-      id: parseInt(props.match.params.testId),
+      userId: userId,
+      isTest: true,
+      versionNumber: recipe.versionNumber + 1,
+      originalRecipeId: parseInt(props.match.params.testId),
     };
 
-    DataManager.delete("recipes", props.match.params.testId)
-      .then(() => DataManager.post("recipes", editedTest))
-      .then((recipe) => {
+    let id;
+
+    DataManager.post("recipes", recipeFromState)
+      .then((newRecipe) => {
+        id = newRecipe.id;
         return Promise.all([
           ...ingredients.map((ingredient) => {
-            ingredient.recipeId = recipe.id;
+            delete ingredient.id;
+            ingredient.recipeId = newRecipe.id;
             return DataManager.post("ingredients", ingredient);
           }),
           ...notes.map((note) => {
-            note.recipeId = recipe.id;
+            delete note.id;
+            note.recipeId = newRecipe.id;
             return DataManager.post("notes", note);
           }),
           ...directions.map((direction) => {
-            direction.recipeId = recipe.id;
+            delete direction.id;
+            direction.recipeId = newRecipe.id;
             return DataManager.post("directions", direction);
           }),
         ]);
       })
-      .then(() => {
-        if (recipe.isTest === true) {
-          props.history.push(`/test/${props.match.params.testId}`);
-        } else {
-          props.history.push(`/recipes`);
-        }
-      });
+      .then(() => props.history.push(`/test/${id}`));
   };
 
   useEffect(() => {
@@ -108,7 +106,7 @@ const TestEditForm = (props) => {
   }, [props.match.params.testId]);
 
   return (
-    <form onSubmit={updateAll}>
+    <form onSubmit={constructRecipe}>
       <fieldset>
         <div className="formgrid">
           <label htmlFor="title">Title</label>
@@ -142,8 +140,6 @@ const TestEditForm = (props) => {
               key={`ingredient-${idx}`}
               idx={idx}
               ingredients={ingredients}
-              setIngredients={setIngredients}
-              value={ingredients[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, ingredients, setIngredients)
               }
@@ -160,8 +156,6 @@ const TestEditForm = (props) => {
               key={`note-${idx}`}
               idx={idx}
               notes={notes}
-              setNotes={setNotes}
-              value={notes[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, notes, setNotes)
               }
@@ -178,8 +172,6 @@ const TestEditForm = (props) => {
               key={`direction-${idx}`}
               idx={idx}
               directions={directions}
-              setDirections={setDirections}
-              value={directions[idx].info}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, directions, setDirections)
               }
@@ -190,46 +182,6 @@ const TestEditForm = (props) => {
             value="Add Another Direction"
             onClick={() => appendItem(directions, emptyObj, setDirections)}
           />
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="choice"
-                checked={recipe.isTest === false}
-                onChange={() =>
-                  setRecipe({
-                    title: recipe.title,
-                    prepTime: recipe.prepTime,
-                    cookTime: recipe.cookTime,
-                    userId: recipe.userId,
-                    isTest: false,
-                    versionNumber: 0,
-                    originalRecipeId: null,
-                  })
-                }
-              />
-              Recipe
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="choice"
-                checked={recipe.isTest === true}
-                onChange={() =>
-                  setRecipe({
-                    title: recipe.title,
-                    prepTime: recipe.prepTime,
-                    cookTime: recipe.cookTime,
-                    userId: recipe.userId,
-                    isTest: true,
-                    versionNumber: recipe.versionNumber,
-                    originalRecipeId: recipe.originalRecipeId,
-                  })
-                }
-              />
-              Test
-            </label>
-          </div>
           <button type="submit" disabled={isLoading}>
             Submit
           </button>
@@ -239,4 +191,4 @@ const TestEditForm = (props) => {
   );
 };
 
-export default TestEditForm;
+export default NewVersionForm;

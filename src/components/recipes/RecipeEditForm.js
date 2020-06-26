@@ -13,9 +13,10 @@ const RecipeEditForm = (props) => {
     title: "",
     prepTime: 0,
     cookTime: 0,
+    versionNumber: 0,
     userId: 0,
     isTest: false,
-    originalRecipeId: 0,
+    originalRecipeId: null,
   });
   const [directions, setDirections] = useState([{ ...emptyObj }]);
   const [ingredients, setIngredients] = useState([{ ...emptyObj }]);
@@ -43,7 +44,8 @@ const RecipeEditForm = (props) => {
       cookTime: recipe.cookTime,
       userId: parseInt(userId),
       isTest: recipe.isTest,
-      originalRecipeId: null,
+      versionNumber: recipe.versionNumber,
+      originalRecipeId: recipe.originalRecipeId,
       id: parseInt(props.match.params.recipeId),
     };
 
@@ -69,7 +71,7 @@ const RecipeEditForm = (props) => {
         if (recipe.isTest === false) {
           props.history.push(`/recipe/${props.match.params.recipeId}`);
         } else {
-          props.history.push(`/test/${props.match.params.recipeId}`);
+          props.history.push(`/test/${props.match.params.recipeId}/versions`);
         }
       });
   };
@@ -203,6 +205,7 @@ const RecipeEditForm = (props) => {
                     cookTime: recipe.cookTime,
                     userId: recipe.userId,
                     isTest: false,
+                    versionNumber: recipe.versionNumber,
                     originalRecipeId: recipe.originalRecipeId,
                   })
                 }
@@ -221,7 +224,8 @@ const RecipeEditForm = (props) => {
                     cookTime: recipe.cookTime,
                     userId: recipe.userId,
                     isTest: true,
-                    originalRecipeId: recipe.originalRecipeId,
+                    versionNumber: 1,
+                    originalRecipeId: parseInt(props.match.params.recipeId),
                   })
                 }
               />

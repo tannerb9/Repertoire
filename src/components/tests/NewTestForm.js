@@ -29,29 +29,36 @@ const NewTestForm = (props) => {
   const constructRecipe = (evt) => {
     evt.preventDefault();
     setIsLoading(true);
-    let id;
+
+    let newId;
+    recipe.versionNumber = 1;
     recipe.userId = userId;
     recipe.isTest = true;
     recipe.originalRecipeId = null;
+
     DataManager.post("recipes", recipe)
       .then((newRecipe) => {
-        id = newRecipe.id;
-        Promise.all([
-          ingredients.forEach((ingredient) => {
+        newId = newRecipe.id;
+        const patchedRecipe = { id: newId, originalRecipeId: newId };
+        return Promise.all([
+          ...ingredients.map((ingredient) => {
             ingredient.recipeId = newRecipe.id;
-            DataManager.post("ingredients", ingredient);
+            return DataManager.post("ingredients", ingredient);
           }),
-          notes.forEach((note) => {
+          ...notes.map((note) => {
             note.recipeId = newRecipe.id;
-            DataManager.post("notes", note);
+            return DataManager.post("notes", note);
           }),
-          directions.forEach((direction) => {
+          ...directions.map((direction) => {
             direction.recipeId = newRecipe.id;
-            DataManager.post("directions", direction);
+            return DataManager.post("directions", direction);
           }),
+          DataManager.patch(patchedRecipe),
         ]);
       })
-      .then(() => props.history.push(`/test/${id}`));
+      .then(() => {
+        props.history.push(`/test/${newId}`);
+      });
   };
 
   return (
@@ -86,6 +93,7 @@ const NewTestForm = (props) => {
               key={`ingredient-${idx}`}
               idx={idx}
               ingredients={ingredients}
+              setIngredients={setIngredients}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, ingredients, setIngredients)
               }
@@ -102,6 +110,7 @@ const NewTestForm = (props) => {
               key={`note-${idx}`}
               idx={idx}
               notes={notes}
+              setNotes={setNotes}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, notes, setNotes)
               }
@@ -118,6 +127,7 @@ const NewTestForm = (props) => {
               key={`direction-${idx}`}
               idx={idx}
               directions={directions}
+              setDirections={setDirections}
               handleDynamicChange={(evt) =>
                 handleDynamicChange(evt, directions, setDirections)
               }

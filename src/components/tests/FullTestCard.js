@@ -6,7 +6,6 @@ const FullTestCard = (props) => {
   const [test, setTest] = useState({});
   const [ingredients, setIngredients] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     DataManager.getWithObjs(
       "recipes",

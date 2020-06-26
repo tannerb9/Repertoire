@@ -43,4 +43,13 @@ export default {
       body: JSON.stringify(editedObj),
     }).then((data) => data.json());
   },
+  patch(editedObj) {
+    return fetch(`${remoteURL}/recipes/${editedObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedObj),
+    }).then((data) => data.json());
+  },
 };

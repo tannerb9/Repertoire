@@ -6,12 +6,13 @@ const TestList = (props) => {
   const [tests, setTests] = useState([]);
   const userId = JSON.parse(sessionStorage.credentials);
 
+  // ADD TESTCOUNT PROP TO RECIPE?
   useEffect(() => {
     DataManager.getUsersRecipes(userId).then((testsFromApi) => {
-      const areTests = testsFromApi.recipes.filter(
-        (checkTest) => checkTest.isTest === true
+      const areFirstTest = testsFromApi.recipes.filter(
+        (checkTest) => checkTest.versionNumber === 1
       );
-      setTests(areTests);
+      setTests(areFirstTest);
     });
   }, [userId]);
 
