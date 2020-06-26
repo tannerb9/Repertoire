@@ -16,6 +16,7 @@ import TestEditForm from "./tests/TestEditForm";
 import TestList from "./tests/TestList";
 import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
+import NewVersionForm from "./tests/NewVersionForm";
 import VersionList from "./tests/VersionList";
 import GenForm from "./recipes/GenericForm";
 
@@ -163,6 +164,17 @@ const ApplicationViews = (props) => {
         render={(props) => {
           if (hasUser) {
             return <VersionList {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/test/:testId(\d+)/versions/new"
+        render={(props) => {
+          if (hasUser) {
+            return <NewVersionForm {...props} />;
           } else {
             return <Redirect to="/login" />;
           }

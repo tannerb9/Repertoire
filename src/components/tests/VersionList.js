@@ -4,38 +4,33 @@ import DataManager from "../../modules/DataManager";
 
 const VersionList = (props) => {
   const [versions, setVersions] = useState([]);
-  const userId = JSON.parse(sessionStorage.credentials);
 
   useEffect(() => {
-    DataManager.getUsersRecipes(userId).then((recipesFromApi) => {
-      const areVersions = recipesFromApi.recipes.filter(
-        (checkVersion) => checkVersion.originalRecipeId !== null
-      );
-      setVersions(areVersions);
+    DataManager.getByProp(
+      "recipes",
+      "originalRecipeId",
+      props.match.params.testId
+    ).then((recipesFromApi) => {
+      setVersions(recipesFromApi);
     });
-  }, [userId]);
+  }, [props.match.params.testId]);
 
   return (
     <>
       <div className="container-cards">
-        {() => {
-          if (versions.length > 1) {
-            versions.map((version) => (
-              <MiniVersionCard key={version.id} version={version} {...props} />
-            ));
-          } else {
-            props.history.push(`/test/${props.testId}`);
-          }
-        }}
+        <h1 className="versionsHeader">Version History</h1>
+        {versions.map((version) => (
+          <MiniVersionCard key={version.id} version={version} {...props} />
+        ))}
       </div>
-      {/* <button
+      <button
         type="button"
         onClick={() => {
-          props.history.push("/test/new");
+          props.history.push(`/test/${props.match.params.testId}/versions/new`);
         }}
       >
-        Add Test
-      </button> */}
+        New Version
+      </button>
     </>
   );
 };
