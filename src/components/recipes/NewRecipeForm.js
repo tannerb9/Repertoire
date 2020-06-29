@@ -55,7 +55,6 @@ const NewRecipeForm = (props) => {
           }),
         ]);
       })
-      //
       .then(() => props.history.push(`/recipe/${newId}`));
   };
 

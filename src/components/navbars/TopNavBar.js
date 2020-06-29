@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
-const TopNavBar = () => {
+const TopNavBar = (props) => {
   const handleLogout = () => {
     sessionStorage.clear();
+    props.setHasUser(props.isAuthenticated());
   };
 
   return (

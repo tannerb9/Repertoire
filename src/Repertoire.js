@@ -12,8 +12,13 @@ const Repertoire = () => {
 
   return (
     <>
-      <ApplicationViews hasUser={hasUser} setUser={setUser} />
-      <TapBar />
+      <ApplicationViews
+        isAuthenticated={isAuthenticated}
+        setHasUser={setHasUser}
+        hasUser={hasUser}
+        setUser={setUser}
+      />
+      <TapBar hasUser={hasUser} />
     </>
   );
 };

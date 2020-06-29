@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DataManager from "../../modules/DataManager";
 import { handleFieldChange } from "../../helpers/functions";
+import "../../styles/navbar.css";
 
 const Register = (props) => {
   const [credentials, setCredentials] = useState({});
@@ -24,43 +25,49 @@ const Register = (props) => {
   };
 
   return (
-    <form onSubmit={handleRegistration}>
-      <fieldset>
-        <div className="formgrid">
-          <label htmlFor="inputEmail">E-mail </label>
-          <input
-            type="email"
-            id="email"
-            onChange={(evt) =>
-              handleFieldChange(evt, credentials, setCredentials)
-            }
-            required
-            autoFocus
-          />
-          <br />
-          <label htmlFor="inputUsername">Username </label>
-          <input
-            type="text"
-            id="username"
-            onChange={(evt) =>
-              handleFieldChange(evt, credentials, setCredentials)
-            }
-            required
-          />
-          <br />
-          <label htmlFor="inputPassword">Password </label>
-          <input
-            type="password"
-            id="password"
-            onChange={(evt) =>
-              handleFieldChange(evt, credentials, setCredentials)
-            }
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </fieldset>
-    </form>
+    <>
+      <div className="container-logo">
+        <h2 className="logo">Repertoire</h2>
+        <h5 className="logo">RECIPE TRACKING MADE EASY</h5>
+      </div>
+      <form onSubmit={handleRegistration}>
+        <fieldset>
+          <div className="formgrid">
+            <label htmlFor="inputEmail">E-mail </label>
+            <input
+              type="email"
+              id="email"
+              onChange={(evt) =>
+                handleFieldChange(evt, credentials, setCredentials)
+              }
+              required
+              autoFocus
+            />
+            <br />
+            <label htmlFor="inputUsername">Username </label>
+            <input
+              type="text"
+              id="username"
+              onChange={(evt) =>
+                handleFieldChange(evt, credentials, setCredentials)
+              }
+              required
+            />
+            <br />
+            <label htmlFor="inputPassword">Password </label>
+            <input
+              type="password"
+              id="password"
+              onChange={(evt) =>
+                handleFieldChange(evt, credentials, setCredentials)
+              }
+              required
+            />
+          </div>
+          <button type="submit">Register</button>
+        </fieldset>
+      </form>
+    </>
   );
 };
 
