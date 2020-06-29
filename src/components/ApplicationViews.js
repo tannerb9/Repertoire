@@ -46,13 +46,9 @@ const ApplicationViews = (props) => {
       <Route
         exact
         path="/"
-        render={() => {
-          if (hasUser) {
-            return <Redirect to="/recipes" />;
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={() => (
+          <>{hasUser ? <Redirect to="/recipes" /> : <Redirect to="/login" />}</>
+        )}
       />
       <Route
         exact
@@ -66,221 +62,159 @@ const ApplicationViews = (props) => {
       <Route
         exact
         path="/recipes"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TopNavBar
-                  isAuthenticated={isAuthenticated}
-                  setHasUser={setHasUser}
-                />
-                <RecipeList {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TopNavBar
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
+            {hasUser ? <RecipeList {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/recipe/new"
-        render={(props) => {
-          if (hasUser) {
-            return <NewRecipeForm {...props} />;
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            {hasUser ? <NewRecipeForm {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/recipe/:recipeId(\d+)"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <RecipeNavBar {...props} />
-                <FullRecipeCard
-                  recipeId={props.match.params.recipeId}
-                  {...props}
-                />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <RecipeNavBar {...props} />
+            {hasUser ? (
+              <FullRecipeCard
+                recipeId={props.match.params.recipeId}
+                {...props}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </>
+        )}
       />
       <Route
         exact
         path="/recipe/:recipeId(\d+)/edit"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <RecipeEditForm {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            {hasUser ? <RecipeEditForm {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/recipe/:recipeId(\d+)/notes"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <RecipeNavBar {...props} />
-                <RecipeNotes {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <RecipeNavBar {...props} />
+            {hasUser ? <RecipeNotes {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/recipe/:recipeId(\d+)/directions"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <RecipeNavBar {...props} />
-                <RecipeDirections {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <RecipeNavBar {...props} />
+            {hasUser ? (
+              <RecipeDirections {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </>
+        )}
       />
       <Route
         exact
         path="/tests"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TopNavBar
-                  isAuthenticated={isAuthenticated}
-                  setHasUser={setHasUser}
-                />
-                <TestList {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TopNavBar
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
+            {hasUser ? <TestList {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)/versions"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TopNavBar
-                  isAuthenticated={isAuthenticated}
-                  setHasUser={setHasUser}
-                />
-                <VersionList {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TopNavBar
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
+            {hasUser ? <VersionList {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)/versions/new"
-        render={(props) => {
-          if (hasUser) {
-            return <NewVersionForm {...props} />;
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            {hasUser ? <NewVersionForm {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/new"
-        render={(props) => {
-          if (hasUser) {
-            return <NewTestForm {...props} />;
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>{hasUser ? <NewTestForm {...props} /> : <Redirect to="/login" />}</>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TestNavBar {...props} />
-                <FullTestCard testId={props.match.params.testId} {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TestNavBar {...props} />
+            {hasUser ? (
+              <FullTestCard testId={props.match.params.testId} {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)/edit"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TestEditForm {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            {hasUser ? <TestEditForm {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)/notes"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TestNavBar {...props} />
-                <TestNotes {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TestNavBar {...props} />
+            {hasUser ? <TestNotes {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
       <Route
         exact
         path="/test/:testId(\d+)/directions"
-        render={(props) => {
-          if (hasUser) {
-            return (
-              <>
-                <TestNavBar {...props} />
-                <TestDirections {...props} />
-              </>
-            );
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
+        render={(props) => (
+          <>
+            <TestNavBar {...props} />
+            {hasUser ? <TestDirections {...props} /> : <Redirect to="/login" />}
+          </>
+        )}
       />
     </>
   );
