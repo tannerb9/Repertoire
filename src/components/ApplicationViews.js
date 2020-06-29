@@ -19,7 +19,7 @@ import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
 import NewVersionForm from "./tests/NewVersionForm";
 import VersionList from "./tests/VersionList";
-// import GenForm from "./recipes/GenericForm";
+import GenForm from "./recipes/GenericForm";
 
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
@@ -29,7 +29,7 @@ const ApplicationViews = (props) => {
 
   return (
     <>
-      {/* <Route
+      <Route
         exact
         path="/addgeneric"
         render={(props) => {
@@ -42,7 +42,7 @@ const ApplicationViews = (props) => {
         render={(props) => {
           return <GenForm inputText={"im editing"} isEdit={true} {...props} />;
         }}
-      /> */}
+      />
       <Route
         exact
         path="/"
