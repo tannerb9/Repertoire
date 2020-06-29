@@ -2,7 +2,7 @@
   display: block;
   background-color: rgb(194, 194, 194);
   border: none;
-  position: absolute;
+  position: static;
   bottom: 60px;
   left: 45%;
   color: white;

@@ -4,6 +4,13 @@
   list-style-type: none;
   padding: 0;
 }
+.container-logo {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+}
 
 .tapbar {
   position: fixed;
@@ -25,4 +32,12 @@
   margin-right: 57px;
   padding-bottom: 15px;
   color: rgb(43, 45, 48);
+}
+.logo {
+  margin: auto;
+  color: rgb(43, 45, 48);
+}
+
+h5.logo {
+  padding-bottom: 15px;
 }

@@ -14,7 +14,7 @@ const MiniTestCard = (props) => {
       </picture> */}
         {/* <p>Prep Time: {props.test.prepTime}</p>
         <p>Cook Time: {props.test.cookTime}</p> */}
-        <p>Version Count: {props.test.testCount}</p>
+        {/* <p>Version Count: {props.test.testCount}</p> */}
         <Link to={`/test/${props.test.id}/versions`}>
           <button>Details</button>
         </Link>

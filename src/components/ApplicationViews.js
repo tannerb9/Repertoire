@@ -24,6 +24,9 @@ import GenForm from "./recipes/GenericForm";
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
   const setUser = props.setUser;
+  const setHasUser = props.setHasUser;
+  const isAuthenticated = props.isAuthenticated;
+
   return (
     <>
       <Route
@@ -67,7 +70,10 @@ const ApplicationViews = (props) => {
           if (hasUser) {
             return (
               <>
-                <TopNavBar />
+                <TopNavBar
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <RecipeList {...props} />
               </>
             );
@@ -160,7 +166,10 @@ const ApplicationViews = (props) => {
           if (hasUser) {
             return (
               <>
-                <TopNavBar />
+                <TopNavBar
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <TestList {...props} />
               </>
             );
@@ -176,7 +185,10 @@ const ApplicationViews = (props) => {
           if (hasUser) {
             return (
               <>
-                <TopNavBar />
+                <TopNavBar
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <VersionList {...props} />
               </>
             );
