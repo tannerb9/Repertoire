@@ -22,7 +22,7 @@ const FormInputField = (props) => {
           removeItem(props.ingredients, props.idx, props.setIngredients);
         }}
       >
-        X
+        &#x2718;
       </button>
     </div>
   );

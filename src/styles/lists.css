@@ -2,10 +2,11 @@
   display: block;
   background-color: rgb(194, 194, 194);
   border: none;
-  position: static;
+  position: fixed;
   bottom: 60px;
   left: 45%;
-  color: white;
+  /* color: white; */
+  color: lightgray;
   height: 60px;
   width: 60px;
   border-radius: 50%;

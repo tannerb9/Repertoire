@@ -49,7 +49,7 @@ const RecipeEditForm = (props) => {
       id: parseInt(props.match.params.recipeId),
     };
 
-    Promise.all(DataManager.delete("recipes", props.match.params.recipeId))
+    DataManager.delete("recipes", props.match.params.recipeId)
       .then(() => DataManager.post("recipes", editedRecipe))
       .then((recipe) => {
         return Promise.all([

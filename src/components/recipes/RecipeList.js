@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import MiniRecipeCard from "./MiniRecipeCard";
 import DataManager from "../../modules/DataManager";
 import "../../styles/lists.css";

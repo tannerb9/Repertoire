@@ -21,7 +21,7 @@ const DirectionInputField = (props) => {
           removeItem(props.directions, props.idx, props.setDirections);
         }}
       >
-        X
+        &#x2718;
       </button>
     </div>
   );

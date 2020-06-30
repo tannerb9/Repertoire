@@ -7,18 +7,22 @@ const FullTestCard = (props) => {
   const [ingredients, setIngredients] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    DataManager.getWithObjs(
-      "recipes",
-      props.match.params.testId,
-      "ingredients"
-    ).then((test) => {
-      setTest({
-        title: test.title,
-        prepTime: test.prepTime,
-        cookTime: test.cookTime,
+    let mounted = true;
+    if (mounted) {
+      DataManager.getWithObjs(
+        "recipes",
+        props.match.params.testId,
+        "ingredients"
+      ).then((test) => {
+        setTest({
+          title: test.title,
+          prepTime: test.prepTime,
+          cookTime: test.cookTime,
+        });
+        setIngredients(test.ingredients);
       });
-      setIngredients(test.ingredients);
-    });
+    }
+    return () => (mounted = false);
   }, [props.match.params.testId]);
 
   return (

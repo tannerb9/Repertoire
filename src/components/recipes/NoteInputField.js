@@ -21,7 +21,7 @@ const NoteInputField = (props) => {
           removeItem(props.notes, props.idx, props.setNotes);
         }}
       >
-        X
+        &#x2718;
       </button>
     </div>
   );
