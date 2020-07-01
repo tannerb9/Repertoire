@@ -10,14 +10,22 @@ const TapBar = (props) => {
           {props.hasUser ? (
             <li>
               <Link className="nav-link" to="/recipes">
-                <button type="button">Recipes</button>
+                <img
+                  src={require("../../Icons/literature-50.png")}
+                  alt="Recipes"
+                />
+                <p>Recipes</p>
               </Link>
             </li>
           ) : null}
           {props.hasUser ? (
             <li>
               <Link className="nav-link" to="/tests">
-                <button type="button">Tests</button>
+                <img
+                  src={require("../../Icons/test-folder-50.png")}
+                  alt="Recipes"
+                />
+                <p>Tests</p>
               </Link>
             </li>
           ) : null}

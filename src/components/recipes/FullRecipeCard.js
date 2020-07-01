@@ -56,14 +56,6 @@ const FullRecipeCard = (props) => {
       >
         &#x2718; Delete
       </button>
-      {/* <button
-        type="button"
-        onClick={() => {
-          window.history.back();
-        }}
-      >
-        Back
-      </button> */}
     </>
   );
 };

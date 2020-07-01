@@ -20,8 +20,13 @@ const VersionList = (props) => {
     <>
       <div className="container-cards">
         <h3 className="versionsHeader">Version History</h3>
-        {versions.map((version) => (
-          <MiniVersionCard key={version.id} version={version} {...props} />
+        {versions.map((version, index) => (
+          <MiniVersionCard
+            color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+            key={version.id}
+            version={version}
+            {...props}
+          />
         ))}
       </div>
       <button

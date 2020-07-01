@@ -1,10 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../../styles/cards.css";
 
 const MiniTestCard = (props) => {
   return (
-    <div className={props.color === "#FFFFFF" ? "whiteCard" : "grayCard"}>
+    <div
+      className={props.color === "#FFFFFF" ? "whiteCard" : "grayCard"}
+      onClick={() => {
+        props.history.push(`/test/${props.test.id}`);
+      }}
+    >
       <div className="card-content">
         <h3 className="card-title">{props.test.title}</h3>
         {/* REFERENCE FOR IMPLEMENTING PHOTOS
@@ -15,9 +19,6 @@ const MiniTestCard = (props) => {
         {/* <p>Prep Time: {props.test.prepTime}</p>
         <p>Cook Time: {props.test.cookTime}</p> */}
         {/* <p>Version Count: {props.test.testCount}</p> */}
-        <Link to={`/test/${props.test.id}/versions`}>
-          <button>Details</button>
-        </Link>
       </div>
     </div>
   );

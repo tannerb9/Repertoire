@@ -9,14 +9,28 @@ const TopNavBar = (props) => {
   };
 
   return (
-    <div className="container">
-      <h2 className="brandName">Repertoire</h2>
-      <Link to="/login">
-        <button className="btn-logout" onClick={handleLogout}>
-          Log Out
-        </button>
-      </Link>
-    </div>
+    <>
+      <div className="container">
+        <img
+          src={require("../../Icons/back-24.png")}
+          alt="Back"
+          onClick={() => {
+            window.history.back();
+          }}
+        />
+        <h2 className="brandName">Repertoire</h2>
+        <Link to="/login">
+          <img
+            src={require("../../Icons/exit-24.png")}
+            alt="Log Out"
+            onClick={handleLogout}
+          />
+        </Link>
+      </div>
+      <div>
+        <hr />
+      </div>
+    </>
   );
 };
 
