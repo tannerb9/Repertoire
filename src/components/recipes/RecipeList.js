@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import MiniRecipeCard from "./MiniRecipeCard";
 import DataManager from "../../modules/DataManager";
 import "../../styles/lists.css";
@@ -21,8 +20,13 @@ const RecipeList = (props) => {
     <>
       <div className="container-cards">
         <h3 className="tab">Recipes</h3>
-        {recipes.map((recipe) => (
-          <MiniRecipeCard key={recipe.id} recipe={recipe} {...props} />
+        {recipes.map((recipe, index) => (
+          <MiniRecipeCard
+            color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+            key={recipe.id}
+            recipe={recipe}
+            {...props}
+          />
         ))}
       </div>
       <button

@@ -5,8 +5,7 @@
   position: fixed;
   bottom: 60px;
   left: 45%;
-  /* color: white; */
-  color: lightgray;
+  color: white;
   height: 60px;
   width: 60px;
   border-radius: 50%;
@@ -23,4 +22,20 @@ h3.tab {
 h3.versionsHeader {
   color: rgb(43, 45, 48);
   text-align: center;
+}
+
+h3.card-title {
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.whiteCard {
+  background-color: white;
+}
+
+.grayCard {
+  background-color: #f1f1f1;
 }

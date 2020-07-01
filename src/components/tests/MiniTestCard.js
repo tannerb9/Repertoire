@@ -4,7 +4,7 @@ import "../../styles/cards.css";
 
 const MiniTestCard = (props) => {
   return (
-    <div className="card">
+    <div className={props.color === "#FFFFFF" ? "whiteCard" : "grayCard"}>
       <div className="card-content">
         <h3 className="card-title">{props.test.title}</h3>
         {/* REFERENCE FOR IMPLEMENTING PHOTOS

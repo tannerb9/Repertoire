@@ -21,8 +21,13 @@ const TestList = (props) => {
     <>
       <div className="container-cards">
         <h3 className="tab">Tests</h3>
-        {tests.map((test) => (
-          <MiniTestCard key={test.id} test={test} {...props} />
+        {tests.map((test, index) => (
+          <MiniTestCard
+            color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+            key={test.id}
+            test={test}
+            {...props}
+          />
         ))}
       </div>
       <button

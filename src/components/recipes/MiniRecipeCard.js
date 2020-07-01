@@ -1,16 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../../styles/cards.css";
 
 const RecipeMiniCard = (props) => {
-  const alternatingColor = ["#FFFFFF", "#D3D3D3"];
   return (
     <div
-      className="card"
+      className={props.color === "#FFFFFF" ? "whiteCard" : "grayCard"}
       onClick={() => {
         props.history.push(`/recipe/${props.recipe.id}`);
       }}
-      color={alternatingColor[index % alternatingColor.length]}
     >
       <div className="card-content">
         <h3 className="card-title">{props.recipe.title}</h3>
