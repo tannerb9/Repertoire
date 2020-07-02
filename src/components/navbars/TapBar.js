@@ -6,7 +6,7 @@ const TapBar = (props) => {
   return (
     <>
       <nav className="tapbar">
-        <ul className="container">
+        <ul className="container tapbar">
           {props.hasUser ? (
             <li>
               <Link className="nav-link" to="/recipes">
@@ -14,7 +14,7 @@ const TapBar = (props) => {
                   src={require("../../Icons/literature-50.png")}
                   alt="Recipes"
                 />
-                <p>Recipes</p>
+                <p className="active">Recipes</p>
               </Link>
             </li>
           ) : null}
@@ -25,7 +25,7 @@ const TapBar = (props) => {
                   src={require("../../Icons/test-folder-50.png")}
                   alt="Recipes"
                 />
-                <p>Tests</p>
+                <p className="active">Tests</p>
               </Link>
             </li>
           ) : null}

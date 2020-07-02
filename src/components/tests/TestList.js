@@ -20,7 +20,6 @@ const TestList = (props) => {
   return (
     <>
       <div className="container-cards">
-        <h3 className="tab">Tests</h3>
         {tests.map((test, index) => (
           <MiniTestCard
             color={index % 2 ? "#FFFFFF" : "#D3D3D3"}

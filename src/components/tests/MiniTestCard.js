@@ -6,7 +6,7 @@ const MiniTestCard = (props) => {
     <div
       className={props.color === "#FFFFFF" ? "whiteCard" : "grayCard"}
       onClick={() => {
-        props.history.push(`/test/${props.test.id}`);
+        props.history.push(`/test/${props.test.id}/versions`);
       }}
     >
       <div className="card-content">

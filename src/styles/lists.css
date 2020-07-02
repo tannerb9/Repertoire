@@ -39,3 +39,8 @@ p {
 .grayCard {
   background-color: #f1f1f1;
 }
+
+.versionsHeader {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}

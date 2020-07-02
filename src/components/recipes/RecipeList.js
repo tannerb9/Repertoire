@@ -19,7 +19,6 @@ const RecipeList = (props) => {
   return (
     <>
       <div className="container-cards">
-        <h3 className="tab">Recipes</h3>
         {recipes.map((recipe, index) => (
           <MiniRecipeCard
             color={index % 2 ? "#FFFFFF" : "#D3D3D3"}

@@ -10,7 +10,7 @@ const TopNavBar = (props) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container topnav">
         <img
           src={require("../../Icons/back-24.png")}
           alt="Back"
@@ -26,9 +26,6 @@ const TopNavBar = (props) => {
             onClick={handleLogout}
           />
         </Link>
-      </div>
-      <div>
-        <hr />
       </div>
     </>
   );
