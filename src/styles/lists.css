@@ -44,3 +44,24 @@ p {
   margin-top: 7px;
   margin-bottom: 7px;
 }
+
+h3.testMiniCards {
+  text-align: center;
+  padding: 30px;
+  margin: 0px;
+}
+
+div.recipeMiniCard,
+div.versionMiniCard {
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 7px;
+  margin: 0px;
+}
+
+div.recipeMiniCard > h3,
+div.recipeMiniCard > p,
+div.versionMiniCard > h3,
+div.versionMiniCard > p {
+  margin: 0;
+}

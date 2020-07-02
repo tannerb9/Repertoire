@@ -30,7 +30,8 @@ body {
 
 .tapbar {
   padding-top: 5px;
-  margin-bottom: 9px;
+  margin-bottom: 0px;
+  padding-bottom: 9px;
   border-top: 0.25px solid #3d4044;
   position: fixed;
   bottom: 0;

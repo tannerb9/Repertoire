@@ -1,6 +1,33 @@
 h3.card-title {
   color: rgb(43, 45, 48);
 }
+
 h3 {
   color: rgb(43, 45, 48);
+}
+
+.times {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.times img {
+  align-self: center;
+}
+
+.container-times {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  justify-content: center;
+}
+
+.times > p {
+  margin-top: 0px;
+}
+
+.recipeMiniCard > h3,
+.versionMiniCard > h3 {
+  padding-bottom: 8px;
 }

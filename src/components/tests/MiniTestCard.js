@@ -10,7 +10,7 @@ const MiniTestCard = (props) => {
       }}
     >
       <div className="card-content">
-        <h3 className="card-title">{props.test.title}</h3>
+        <h3 className="card-title testMiniCards">{props.test.title}</h3>
         {/* REFERENCE FOR IMPLEMENTING PHOTOS
         
         <picture>
