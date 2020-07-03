@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import TopNavBar from "./navbars/TopNavBar";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import TapBar from "./navbars/TapBar";
 import FullRecipeCard from "./recipes/FullRecipeCard";
 import NewRecipeForm from "./recipes/NewRecipeForm";
 import RecipeDirections from "./recipes/RecipeDirections";
@@ -24,8 +24,6 @@ import GenForm from "./recipes/GenericForm";
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
   const setUser = props.setUser;
-  const setHasUser = props.setHasUser;
-  const isAuthenticated = props.isAuthenticated;
 
   return (
     <>
@@ -64,11 +62,14 @@ const ApplicationViews = (props) => {
         path="/recipes"
         render={(props) => (
           <>
-            <TopNavBar
-              isAuthenticated={isAuthenticated}
-              setHasUser={setHasUser}
-            />
-            {hasUser ? <RecipeList {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <RecipeList {...props} />
+                <TapBar isRecipe={true} />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -136,11 +137,14 @@ const ApplicationViews = (props) => {
         path="/tests"
         render={(props) => (
           <>
-            <TopNavBar
-              isAuthenticated={isAuthenticated}
-              setHasUser={setHasUser}
-            />
-            {hasUser ? <TestList {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <TestList {...props} />
+                <TapBar isTest={true} />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -149,11 +153,14 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/versions"
         render={(props) => (
           <>
-            <TopNavBar
-              isAuthenticated={isAuthenticated}
-              setHasUser={setHasUser}
-            />
-            {hasUser ? <VersionList {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <VersionList {...props} />
+                <TapBar {...props} isVersion={true} />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />

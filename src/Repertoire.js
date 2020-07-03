@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ApplicationViews from "./components/ApplicationViews";
-import TapBar from "./components/navbars/TapBar";
+import TopNavBar from "./components/navbars/TopNavBar";
 
 const Repertoire = () => {
   const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
@@ -12,13 +12,17 @@ const Repertoire = () => {
 
   return (
     <>
+      <TopNavBar
+        hasUser={hasUser}
+        isAuthenticated={isAuthenticated}
+        setHasUser={setHasUser}
+      />
       <ApplicationViews
         isAuthenticated={isAuthenticated}
         setHasUser={setHasUser}
         hasUser={hasUser}
         setUser={setUser}
       />
-      <TapBar hasUser={hasUser} />
     </>
   );
 };

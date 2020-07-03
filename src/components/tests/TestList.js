@@ -18,26 +18,16 @@ const TestList = (props) => {
   }, [userId]);
 
   return (
-    <>
-      <div className="container-cards">
-        {tests.map((test, index) => (
-          <MiniTestCard
-            color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
-            key={test.id}
-            test={test}
-            {...props}
-          />
-        ))}
-      </div>
-      <button
-        className="add-button"
-        onClick={() => {
-          props.history.push("/test/new");
-        }}
-      >
-        &#x2b;
-      </button>
-    </>
+    <div className="container-cards">
+      {tests.map((test, index) => (
+        <MiniTestCard
+          color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+          key={test.id}
+          test={test}
+          {...props}
+        />
+      ))}
+    </div>
   );
 };
 
