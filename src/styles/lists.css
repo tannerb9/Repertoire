@@ -1,17 +1,3 @@
-.add-button {
-  display: block;
-  background-color: rgb(194, 194, 194);
-  border: none;
-  position: static;
-  bottom: 60px;
-  left: 45%;
-  color: white;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  font-size: 2em;
-}
-
 h3.tab {
   text-align: center;
   color: rgb(43, 45, 48);
@@ -22,4 +8,46 @@ h3.tab {
 h3.versionsHeader {
   color: rgb(43, 45, 48);
   text-align: center;
+}
+
+h3.card-title {
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.whiteCard {
+  background-color: white;
+}
+
+.grayCard {
+  background-color: #f1f1f1;
+}
+
+.versionsHeader {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+h3.testMiniCards {
+  text-align: center;
+  padding: 30px;
+  margin: 0px;
+}
+
+div.recipeMiniCard,
+div.versionMiniCard {
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 7px;
+  margin: 0px;
+}
+
+div.recipeMiniCard > h3,
+div.recipeMiniCard > p,
+div.versionMiniCard > h3,
+div.versionMiniCard > p {
+  margin: 0;
 }

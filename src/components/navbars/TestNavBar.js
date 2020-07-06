@@ -1,25 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/navbar.css";
 
 const TestNavBar = (props) => {
   const testId = props.match.params.testId;
 
   return (
     <nav className="recipeNavBar">
-      <ul className="container">
+      <ul className="container tapbar">
         <li>
           <Link className="nav-link" to={`/test/${testId}`}>
-            Overview
+            <img src={require("../../Icons/bulleted-list-50.png")} alt="" />
+            <p>Overview</p>
           </Link>
         </li>
         <li>
           <Link className="nav-link" to={`/test/${testId}/notes`}>
-            Notes
+            <img src={require("../../Icons/chat-bubble-50.png")} alt="" />
+            <p>Notes</p>
           </Link>
         </li>
         <li>
           <Link className="nav-link" to={`/test/${testId}/directions`}>
-            Directions
+            <img src={require("../../Icons/numbered-list-150.png")} alt="" />
+            <p>Directions</p>
           </Link>
         </li>
       </ul>

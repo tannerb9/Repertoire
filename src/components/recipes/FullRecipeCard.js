@@ -7,18 +7,22 @@ const FullRecipeCard = (props) => {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    DataManager.getWithObjs(
-      "recipes",
-      props.match.params.recipeId,
-      "ingredients"
-    ).then((recipe) => {
-      setRecipe({
-        title: recipe.title,
-        prepTime: recipe.prepTime,
-        cookTime: recipe.cookTime,
+    let mounted = true;
+    if (mounted) {
+      DataManager.getWithObjs(
+        "recipes",
+        props.match.params.recipeId,
+        "ingredients"
+      ).then((recipe) => {
+        setRecipe({
+          title: recipe.title,
+          prepTime: recipe.prepTime,
+          cookTime: recipe.cookTime,
+        });
+        setIngredients(recipe.ingredients);
       });
-      setIngredients(recipe.ingredients);
-    });
+    }
+    return () => (mounted = false);
   }, [props.match.params.recipeId]);
 
   return (
@@ -52,14 +56,6 @@ const FullRecipeCard = (props) => {
       >
         &#x2718; Delete
       </button>
-      {/* <button
-        type="button"
-        onClick={() => {
-          window.history.back();
-        }}
-      >
-        Back
-      </button> */}
     </>
   );
 };

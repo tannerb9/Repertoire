@@ -17,22 +17,16 @@ const RecipeList = (props) => {
   }, [userId]);
 
   return (
-    <>
-      <div className="container-cards">
-        <h3 className="tab">Recipes</h3>
-        {recipes.map((recipe) => (
-          <MiniRecipeCard key={recipe.id} recipe={recipe} {...props} />
-        ))}
-      </div>
-      <button
-        className="add-button"
-        onClick={() => {
-          props.history.push("/recipe/new");
-        }}
-      >
-        &#x2b;
-      </button>
-    </>
+    <div className="container-cards">
+      {recipes.map((recipe, index) => (
+        <MiniRecipeCard
+          color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+          key={recipe.id}
+          recipe={recipe}
+          {...props}
+        />
+      ))}
+    </div>
   );
 };
 

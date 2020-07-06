@@ -17,22 +17,17 @@ const VersionList = (props) => {
   }, [props.match.params.testId]);
 
   return (
-    <>
-      <div className="container-cards">
-        <h3 className="versionsHeader">Version History</h3>
-        {versions.map((version) => (
-          <MiniVersionCard key={version.id} version={version} {...props} />
-        ))}
-      </div>
-      <button
-        className="add-button"
-        onClick={() => {
-          props.history.push(`/test/${props.match.params.testId}/versions/new`);
-        }}
-      >
-        &#x2b;
-      </button>
-    </>
+    <div className="container-cards">
+      <h3 className="versionsHeader">Version History</h3>
+      {versions.map((version, index) => (
+        <MiniVersionCard
+          color={index % 2 ? "#FFFFFF" : "#D3D3D3"}
+          key={version.id}
+          version={version}
+          {...props}
+        />
+      ))}
+    </div>
   );
 };
 

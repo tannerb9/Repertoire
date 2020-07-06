@@ -37,7 +37,7 @@ const Login = (props) => {
   return (
     <>
       <div className="container-logo">
-        <h2 className="logo">Repertoire</h2>
+        <h2 className="brandName">Repertoire</h2>
         <h5 className="logo">RECIPE TRACKING MADE EASY</h5>
       </div>
       <form onSubmit={handleLogin}>
