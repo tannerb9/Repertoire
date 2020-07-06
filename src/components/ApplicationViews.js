@@ -212,6 +212,7 @@ const ApplicationViews = (props) => {
                   hasUser={hasUser}
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
+                  isVersionList={true}
                 />
                 <VersionList {...props} />
                 <TapBar {...props} isVersion={true} />
@@ -313,6 +314,7 @@ const ApplicationViews = (props) => {
               hasUser={hasUser}
               isAuthenticated={isAuthenticated}
               setHasUser={setHasUser}
+              testId={props.match.params.testId}
             />
             <TestNavBar {...props} />
             {hasUser ? <TestNotes {...props} /> : <Redirect to="/login" />}
@@ -329,6 +331,7 @@ const ApplicationViews = (props) => {
               hasUser={hasUser}
               isAuthenticated={isAuthenticated}
               setHasUser={setHasUser}
+              testId={props.match.params.testId}
             />
             <TestNavBar {...props} />
             {hasUser ? <TestDirections {...props} /> : <Redirect to="/login" />}

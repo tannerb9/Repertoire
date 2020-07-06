@@ -23,7 +23,14 @@ const TopNavBar = (props) => {
                 <img src={require("../../Icons/back-24.png")} alt="Back" />
               </Link>
             ) : null}
-            {!props.isTestCard && !props.isRecipeCard ? (
+            {props.isVersionList ? (
+              <Link to={`/tests`}>
+                <img src={require("../../Icons/back-24.png")} alt="Back" />
+              </Link>
+            ) : null}
+            {!props.isTestCard &&
+            !props.isRecipeCard &&
+            !props.isVersionList ? (
               <img
                 src={require("../../Icons/back-24.png")}
                 alt="Back"
