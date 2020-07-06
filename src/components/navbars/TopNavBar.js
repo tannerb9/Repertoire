@@ -13,13 +13,26 @@ const TopNavBar = (props) => {
       {props.hasUser ? (
         <div className="container topnav">
           <>
-            <img
-              src={require("../../Icons/back-24.png")}
-              alt="Back"
-              onClick={() => {
-                window.history.back();
-              }}
-            />
+            {props.isRecipeCard ? (
+              <Link to="/recipes">
+                <img src={require("../../Icons/back-24.png")} alt="Back" />
+              </Link>
+            ) : null}
+            {props.isTestCard ? (
+              <Link to={`/test/${props.testId}/versions`}>
+                <img src={require("../../Icons/back-24.png")} alt="Back" />
+              </Link>
+            ) : null}
+            {!props.isTestCard && !props.isRecipeCard ? (
+              <img
+                src={require("../../Icons/back-24.png")}
+                alt="Back"
+                onClick={() => {
+                  window.history.back();
+                }}
+              />
+            ) : null}
+
             <h2 className="brandName">Repertoire</h2>
             <Link to="/login">
               <img

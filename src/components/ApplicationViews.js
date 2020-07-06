@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import TapBar from "./navbars/TapBar";
+import TopNavBar from "./navbars/TopNavBar";
 import FullRecipeCard from "./recipes/FullRecipeCard";
 import NewRecipeForm from "./recipes/NewRecipeForm";
 import RecipeDirections from "./recipes/RecipeDirections";
@@ -19,15 +20,17 @@ import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
 import NewVersionForm from "./tests/NewVersionForm";
 import VersionList from "./tests/VersionList";
-import GenForm from "./recipes/GenericForm";
+// import GenForm from "./recipes/GenericForm";
 
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
   const setUser = props.setUser;
+  const isAuthenticated = props.isAuthenticated;
+  const setHasUser = props.setHasUser;
 
   return (
     <>
-      <Route
+      {/* <Route
         exact
         path="/addgeneric"
         render={(props) => {
@@ -40,7 +43,7 @@ const ApplicationViews = (props) => {
         render={(props) => {
           return <GenForm inputText={"im editing"} isEdit={true} {...props} />;
         }}
-      />
+      /> */}
       <Route
         exact
         path="/"
@@ -64,6 +67,11 @@ const ApplicationViews = (props) => {
           <>
             {hasUser ? (
               <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <RecipeList {...props} />
                 <TapBar isRecipe={true} />
               </>
@@ -78,7 +86,18 @@ const ApplicationViews = (props) => {
         path="/recipe/new"
         render={(props) => (
           <>
-            {hasUser ? <NewRecipeForm {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
+                <NewRecipeForm {...props} />{" "}
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -87,6 +106,12 @@ const ApplicationViews = (props) => {
         path="/recipe/:recipeId(\d+)"
         render={(props) => (
           <>
+            <TopNavBar
+              isRecipeCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
             <RecipeNavBar {...props} />
             {hasUser ? (
               <FullRecipeCard
@@ -104,7 +129,18 @@ const ApplicationViews = (props) => {
         path="/recipe/:recipeId(\d+)/edit"
         render={(props) => (
           <>
-            {hasUser ? <RecipeEditForm {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
+                <RecipeEditForm {...props} />{" "}
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -113,6 +149,12 @@ const ApplicationViews = (props) => {
         path="/recipe/:recipeId(\d+)/notes"
         render={(props) => (
           <>
+            <TopNavBar
+              isRecipeCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
             <RecipeNavBar {...props} />
             {hasUser ? <RecipeNotes {...props} /> : <Redirect to="/login" />}
           </>
@@ -123,6 +165,12 @@ const ApplicationViews = (props) => {
         path="/recipe/:recipeId(\d+)/directions"
         render={(props) => (
           <>
+            <TopNavBar
+              isRecipeCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
             <RecipeNavBar {...props} />
             {hasUser ? (
               <RecipeDirections {...props} />
@@ -139,6 +187,11 @@ const ApplicationViews = (props) => {
           <>
             {hasUser ? (
               <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <TestList {...props} />
                 <TapBar isTest={true} />
               </>
@@ -155,6 +208,11 @@ const ApplicationViews = (props) => {
           <>
             {hasUser ? (
               <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
                 <VersionList {...props} />
                 <TapBar {...props} isVersion={true} />
               </>
@@ -169,7 +227,18 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/versions/new"
         render={(props) => (
           <>
-            {hasUser ? <NewVersionForm {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
+                <NewVersionForm {...props} />{" "}
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -177,7 +246,20 @@ const ApplicationViews = (props) => {
         exact
         path="/test/new"
         render={(props) => (
-          <>{hasUser ? <NewTestForm {...props} /> : <Redirect to="/login" />}</>
+          <>
+            {hasUser ? (
+              <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
+                <NewTestForm {...props} />
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </>
         )}
       />
       <Route
@@ -185,6 +267,13 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)"
         render={(props) => (
           <>
+            <TopNavBar
+              isTestCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+              testId={props.match.params.testId}
+            />
             <TestNavBar {...props} />
             {hasUser ? (
               <FullTestCard testId={props.match.params.testId} {...props} />
@@ -199,7 +288,18 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/edit"
         render={(props) => (
           <>
-            {hasUser ? <TestEditForm {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <>
+                <TopNavBar
+                  hasUser={hasUser}
+                  isAuthenticated={isAuthenticated}
+                  setHasUser={setHasUser}
+                />
+                <TestEditForm {...props} />{" "}
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -208,6 +308,12 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/notes"
         render={(props) => (
           <>
+            <TopNavBar
+              isTestCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
             <TestNavBar {...props} />
             {hasUser ? <TestNotes {...props} /> : <Redirect to="/login" />}
           </>
@@ -218,6 +324,12 @@ const ApplicationViews = (props) => {
         path="/test/:testId(\d+)/directions"
         render={(props) => (
           <>
+            <TopNavBar
+              isTestCard={true}
+              hasUser={hasUser}
+              isAuthenticated={isAuthenticated}
+              setHasUser={setHasUser}
+            />
             <TestNavBar {...props} />
             {hasUser ? <TestDirections {...props} /> : <Redirect to="/login" />}
           </>
