@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RecipeOrTest from "../modals/RecipeOrTest";
+// import RecipeOrTest from "../modals/RecipeOrTest";
 import "../../styles/navbar.css";
 
 const TapBar = (props) => {
@@ -13,15 +13,9 @@ const TapBar = (props) => {
             <p className="active">Recipes</p>
           </Link>
         </li>
-        <li>
-          <Link className="nav-link" to="/tests">
-            <img src={require("../../Icons/test-folder-50.png")} alt="Tests" />
-            <p className="active">Tests</p>
-          </Link>
-        </li>
         {props.isRecipe ? (
           <li>
-            <div>
+            {/* <div>
               <img
                 src={require("../../Icons/plus-50.png")}
                 alt="New"
@@ -29,16 +23,25 @@ const TapBar = (props) => {
                   return <RecipeOrTest {...props} />;
                 }}
               />
-            </div>
-            {/* <Link className="nav-link" to="/recipe/new">
-              <img src={require("../../Icons/plus-50.png")} alt="New" />
-            </Link> */}
+              <p>New</p>
+            </div> */}
+            <Link className="nav-link" to="/recipe/new">
+              <img
+                className="addBtn"
+                src={require("../../Icons/add-new-100.png")}
+                alt="New"
+              />
+            </Link>
           </li>
         ) : null}
         {props.isTest ? (
           <li>
             <Link className="nav-link" to="/test/new">
-              <img src={require("../../Icons/plus-50.png")} alt="New" />
+              <img
+                className="addBtn"
+                src={require("../../Icons/add-new-100.png")}
+                alt="New"
+              />
             </Link>
           </li>
         ) : null}
@@ -50,12 +53,18 @@ const TapBar = (props) => {
             >
               <img
                 className="addBtn"
-                src={require("../../Icons/plus-50.png")}
+                src={require("../../Icons/add-new-100.png")}
                 alt="New"
               />
             </Link>
           </li>
         ) : null}
+        <li>
+          <Link className="nav-link" to="/tests">
+            <img src={require("../../Icons/test-folder-50.png")} alt="Tests" />
+            <p className="active">Tests</p>
+          </Link>
+        </li>
       </ul>
     </nav>
   );
