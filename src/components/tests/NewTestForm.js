@@ -65,6 +65,7 @@ const NewTestForm = (props) => {
     <form onSubmit={constructRecipe}>
       <fieldset>
         <div className="formgrid">
+          <h1>New Test</h1>
           <label htmlFor="title">Title</label>
           <input
             type="text"

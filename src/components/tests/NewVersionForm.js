@@ -109,6 +109,7 @@ const NewVersionForm = (props) => {
     <form onSubmit={constructRecipe}>
       <fieldset>
         <div className="formgrid">
+          <h1>New Version</h1>
           <label htmlFor="title">Title</label>
           <input
             type="text"
