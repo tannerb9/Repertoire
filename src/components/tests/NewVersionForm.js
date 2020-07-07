@@ -123,7 +123,7 @@ const NewVersionForm = (props) => {
             type="number"
             id="prepTime"
             value={recipe.prepTime}
-            placeholder="Numbers only"
+            placeholder="In minutes"
             onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
           />
           <label htmlFor="cookTime">Cook Time</label>
@@ -131,7 +131,7 @@ const NewVersionForm = (props) => {
             type="number"
             id="cookTime"
             value={recipe.cookTime}
-            placeholder="Numbers only"
+            placeholder="In minutes"
             onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
           />
           <label htmlFor="ingredient">Ingredients</label>
