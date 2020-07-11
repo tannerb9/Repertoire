@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 An app to combine your recipe journal and cookbook into one! Repertoire allows users to differentiate between finalized and test versions of a recipe.
 
-##### Key Features:
+#### Key Features:
 
 - Recipe Cards - View a recipe's ingredients, notes, and directions.
 
@@ -14,21 +14,21 @@ An app to combine your recipe journal and cookbook into one! Repertoire allows u
 
 - Cookbook - Finalized recipes are moved to the Recipes tab.
 
-##### To Run
+#### To Run
 
 1. From this repo's home page, click the green **Code** button.
 2. On the dropdown menu, click the **Use SSH** link and copy the provided URL.
 3. In the terminal, execute **git clone _paste SSH url here_**.
 4. Cd into **repertoire/api** and create a **Database.json** file. Then, execute **json-server -p 8088 data.json**.
 5. Cd into **repertoire/modules** and open **DataManager.js**. Change the **remoteURL** variable to your local server's url and save.
-6. From the root directory, execute **npm start**
+6. From the root directory, execute **npm start**.
 
-##### Tech Used
+#### Tech Used
 
 - React
 - Javascript
 - CSS
 
-##### Contributors
+#### Contributors
 
 Tanner Brainard
