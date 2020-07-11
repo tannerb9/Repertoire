@@ -31,3 +31,18 @@ h3 {
 .versionMiniCard > h3 {
   padding-bottom: 8px;
 }
+
+.mainBody {
+  margin-left: 5px;
+}
+
+.container-ingredients,
+.container-notes > p,
+.container-directions > p {
+  margin-left: 5px;
+  padding-bottom: 3px;
+}
+
+.prep-cookTime {
+  margin-left: 5px;
+}

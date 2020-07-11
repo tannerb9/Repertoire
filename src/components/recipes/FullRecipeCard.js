@@ -27,12 +27,12 @@ const FullRecipeCard = (props) => {
 
   return (
     <>
-      <div>
+      <div className="mainBody">
         <h3>{recipe.title}</h3>
-        <p>Prep Time: {recipe.prepTime} minutes</p>
-        <p>Cook Time: {recipe.cookTime} minutes</p>
+        <p className="prep-cookTime">Prep Time: {recipe.prepTime} minutes</p>
+        <p className="prep-cookTime">Cook Time: {recipe.cookTime} minutes</p>
       </div>
-      <div>
+      <div className="mainBody">
         <h3>Ingredients</h3>
         <div className="container-ingredients">
           {ingredients.map((ingredient) => (

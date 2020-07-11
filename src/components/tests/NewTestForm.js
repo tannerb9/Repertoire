@@ -65,6 +65,7 @@ const NewTestForm = (props) => {
     <form onSubmit={constructRecipe}>
       <fieldset>
         <div className="formgrid">
+          <h1>New Test</h1>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -77,14 +78,14 @@ const NewTestForm = (props) => {
           <input
             type="number"
             id="prepTime"
-            placeholder="Numbers only"
+            placeholder="In minutes"
             onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
           />
           <label htmlFor="cookTime">Cook Time</label>
           <input
             type="number"
             id="cookTime"
-            placeholder="Numbers only"
+            placeholder="In minutes"
             onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
           />
           <label htmlFor="ingredient">Ingredients</label>

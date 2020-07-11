@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataManager from "../../modules/DataManager";
+import "../../styles/cards.css";
 
 const RecipeDirections = (props) => {
   const [directions, setDirections] = useState([]);
@@ -16,7 +17,7 @@ const RecipeDirections = (props) => {
 
   return (
     <>
-      <div>
+      <div className="mainBody">
         <h3>Directions</h3>
       </div>
       <div className="container-directions">

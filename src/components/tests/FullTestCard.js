@@ -27,12 +27,12 @@ const FullTestCard = (props) => {
 
   return (
     <>
-      <div>
+      <div className="mainBody">
         <h3>{test.title}</h3>
-        <p>Prep Time: {test.prepTime}</p>
-        <p>Cook Time: {test.cookTime}</p>
+        <p className="prep-cookTime">Prep Time: {test.prepTime}</p>
+        <p className="prep-cookTime">Cook Time: {test.cookTime}</p>
       </div>
-      <div>
+      <div className="mainBody">
         <h3>Ingredients</h3>
         <div className="container-ingredients">
           {ingredients.map((ingredient) => (

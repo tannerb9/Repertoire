@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataManager from "../../modules/DataManager";
+import "../../styles/cards.css";
 
 const RecipeNotes = (props) => {
   const [notes, setNotes] = useState([]);
@@ -17,7 +18,7 @@ const RecipeNotes = (props) => {
   // REMOVE H3 NOTES ONCE TAB IS INDICATED VIA UNDERLINE ETC
   return (
     <>
-      <div>
+      <div className="mainBody">
         <h3>Notes</h3>
       </div>
       <div className="container-notes">
