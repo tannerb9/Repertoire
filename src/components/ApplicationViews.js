@@ -5,14 +5,13 @@ import Register from "./auth/Register";
 import TapBar from "./navbars/TapBar";
 import TopNavBar from "./navbars/TopNavBar";
 import FullRecipeCard from "./recipes/FullRecipeCard";
-import NewRecipeForm from "./recipes/NewRecipeForm";
+import GenericNewForm from "./recipes/GenericNewForm";
 import RecipeDirections from "./recipes/RecipeDirections";
 import RecipeEditForm from "./recipes/RecipeEditForm";
 import RecipeList from "./recipes/RecipeList";
 import RecipeNavBar from "./navbars/RecipeNavBar";
 import RecipeNotes from "./recipes/RecipeNotes";
 import FullTestCard from "./tests/FullTestCard";
-import NewTestForm from "./tests/NewTestForm";
 import TestDirections from "./tests/TestDirections";
 import TestEditForm from "./tests/TestEditForm";
 import TestList from "./tests/TestList";
@@ -20,7 +19,6 @@ import TestNavBar from "./navbars/TestNavBar";
 import TestNotes from "./tests/TestNotes";
 import NewVersionForm from "./tests/NewVersionForm";
 import VersionList from "./tests/VersionList";
-// import GenForm from "./recipes/GenericForm";
 
 const ApplicationViews = (props) => {
   const hasUser = props.hasUser;
@@ -30,20 +28,6 @@ const ApplicationViews = (props) => {
 
   return (
     <>
-      {/* <Route
-        exact
-        path="/addgeneric"
-        render={(props) => {
-          return <GenForm inputText={"im adding"} isEdit={false} {...props} />;
-        }}
-      />
-      <Route
-        exact
-        path="/editgeneric"
-        render={(props) => {
-          return <GenForm inputText={"im editing"} isEdit={true} {...props} />;
-        }}
-      /> */}
       <Route
         exact
         path="/"
@@ -93,7 +77,7 @@ const ApplicationViews = (props) => {
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
                 />
-                <NewRecipeForm {...props} />{" "}
+                <GenericNewForm {...props} isRecipe={true} />
               </>
             ) : (
               <Redirect to="/login" />
@@ -136,7 +120,7 @@ const ApplicationViews = (props) => {
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
                 />
-                <RecipeEditForm {...props} />{" "}
+                <RecipeEditForm {...props} />
               </>
             ) : (
               <Redirect to="/login" />
@@ -235,7 +219,7 @@ const ApplicationViews = (props) => {
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
                 />
-                <NewVersionForm {...props} />{" "}
+                <NewVersionForm {...props} />
               </>
             ) : (
               <Redirect to="/login" />
@@ -255,7 +239,7 @@ const ApplicationViews = (props) => {
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
                 />
-                <NewTestForm {...props} />
+                <GenericNewForm {...props} isTest={true} />
               </>
             ) : (
               <Redirect to="/login" />
@@ -296,7 +280,7 @@ const ApplicationViews = (props) => {
                   isAuthenticated={isAuthenticated}
                   setHasUser={setHasUser}
                 />
-                <TestEditForm {...props} />{" "}
+                <TestEditForm {...props} />
               </>
             ) : (
               <Redirect to="/login" />

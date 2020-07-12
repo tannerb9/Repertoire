@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import DataManager from "../../modules/DataManager";
-import FormInputField from "../recipes/FormInputField";
-import DirectionInputField from "../recipes/DirectionInputField";
-import NoteInputField from "../recipes/NoteInputField";
+import FormInputField from "./FormInputField";
+import DirectionInputField from "./DirectionInputField";
+import NoteInputField from "./NoteInputField";
 import { handleFieldChange } from "../../helpers/functions";
 import "../../styles/forms.css";
 
-const NewTestForm = (props) => {
+const GenericNewForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
   const emptyObj = { info: "" };
   const [recipe, setRecipe] = useState({});
@@ -31,9 +31,13 @@ const NewTestForm = (props) => {
     setIsLoading(true);
 
     let newId;
-    recipe.versionNumber = 1;
+    {
+      props.isTest ? (recipe.versionNumber = 1) : (recipe.versionNumber = 0);
+    }
     recipe.userId = userId;
-    recipe.isTest = true;
+    {
+      props.isTest ? (recipe.isTest = true) : (recipe.isTest = false);
+    }
     recipe.originalRecipeId = null;
 
     DataManager.post("recipes", recipe)
@@ -53,19 +57,21 @@ const NewTestForm = (props) => {
             direction.recipeId = newRecipe.id;
             return DataManager.post("directions", direction);
           }),
-          DataManager.patch(patchedRecipe),
+          props.isTest ? DataManager.patch(patchedRecipe) : null,
         ]);
       })
-      .then(() => {
-        props.history.push(`/test/${newId}`);
-      });
+      .then(() =>
+        props.isTest
+          ? props.history.push(`/test/${newId}`)
+          : props.history.push(`/recipe/${newId}`)
+      );
   };
 
   return (
     <form onSubmit={constructRecipe}>
       <fieldset>
         <div className="formgrid">
-          <h1>New Test</h1>
+          {props.isTest ? <h1>New Test</h1> : <h1>New Recipe</h1>}
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -148,4 +154,4 @@ const NewTestForm = (props) => {
   );
 };
 
-export default NewTestForm;
+export default GenericNewForm;

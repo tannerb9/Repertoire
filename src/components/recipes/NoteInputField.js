@@ -12,13 +12,29 @@ const NoteInputField = (props) => {
         data-idx={props.idx}
         id={noteId}
         className="info"
-        value={props.notes[props.idx].info}
+        value={props.isNote ? props.notes[props.idx].info : undefined}
+        value={props.isIng ? props.ingredients[props.idx].info : undefined}
+        value={props.isDir ? props.directions[props.idx].info : undefined}
         onChange={props.handleDynamicChange}
       />
       <button
         onClick={(evt) => {
           evt.preventDefault();
-          removeItem(props.notes, props.idx, props.setNotes);
+          return (
+            <>
+              {props.isNote
+                ? removeItem(props.notes, props.idx, props.setNotes)
+                : null}
+
+              {props.isIng
+                ? removeItem(props.ingredients, props.idx, props.setIngredients)
+                : null}
+
+              {props.isNote
+                ? removeItem(props.directions, props.idx, props.setDirections)
+                : null}
+            </>
+          );
         }}
       >
         &#x2718;

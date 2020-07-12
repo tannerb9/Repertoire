@@ -9,6 +9,7 @@ import "../../styles/forms.css";
 const NewVersionForm = (props) => {
   const userId = JSON.parse(sessionStorage.credentials);
   const emptyObj = { info: "" };
+  // DIFF
   const [recipe, setRecipe] = useState({
     title: "",
     prepTime: 0,
@@ -38,6 +39,7 @@ const NewVersionForm = (props) => {
     evt.preventDefault();
     setIsLoading(true);
 
+    // DIFF
     const recipeFromState = {
       title: recipe.title,
       prepTime: recipe.prepTime,
@@ -48,11 +50,11 @@ const NewVersionForm = (props) => {
       originalRecipeId: parseInt(props.match.params.testId),
     };
 
-    let id;
+    let newId;
 
     DataManager.post("recipes", recipeFromState)
       .then((newRecipe) => {
-        id = newRecipe.id;
+        newId = newRecipe.id;
         return Promise.all([
           ...ingredients.map((ingredient) => {
             delete ingredient.id;
@@ -71,7 +73,7 @@ const NewVersionForm = (props) => {
           }),
         ]);
       })
-      .then(() => props.history.push(`/test/${id}`));
+      .then(() => props.history.push(`/test/${newId}`));
   };
 
   useEffect(() => {
