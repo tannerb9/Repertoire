@@ -32,7 +32,13 @@ const ApplicationViews = (props) => {
         exact
         path="/"
         render={() => (
-          <>{hasUser ? <Redirect to="/recipes" /> : <Redirect to="/login" />}</>
+          <>
+            {hasUser ? (
+              <Redirect to="/recipes" />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </>
         )}
       />
       <Route
@@ -96,7 +102,7 @@ const ApplicationViews = (props) => {
               isAuthenticated={isAuthenticated}
               setHasUser={setHasUser}
             />
-            <RecipeNavBar {...props} />
+            <RecipeNavBar isOverview={true} {...props} />
             {hasUser ? (
               <FullRecipeCard
                 recipeId={props.match.params.recipeId}
@@ -139,8 +145,12 @@ const ApplicationViews = (props) => {
               isAuthenticated={isAuthenticated}
               setHasUser={setHasUser}
             />
-            <RecipeNavBar {...props} />
-            {hasUser ? <RecipeNotes {...props} /> : <Redirect to="/login" />}
+            <RecipeNavBar isNotes={true} {...props} />
+            {hasUser ? (
+              <RecipeNotes {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -155,7 +165,7 @@ const ApplicationViews = (props) => {
               isAuthenticated={isAuthenticated}
               setHasUser={setHasUser}
             />
-            <RecipeNavBar {...props} />
+            <RecipeNavBar isDirections={true} {...props} />
             {hasUser ? (
               <RecipeDirections {...props} />
             ) : (
@@ -261,7 +271,10 @@ const ApplicationViews = (props) => {
             />
             <TestNavBar {...props} />
             {hasUser ? (
-              <FullTestCard testId={props.match.params.testId} {...props} />
+              <FullTestCard
+                testId={props.match.params.testId}
+                {...props}
+              />
             ) : (
               <Redirect to="/login" />
             )}
@@ -301,7 +314,11 @@ const ApplicationViews = (props) => {
               testId={props.match.params.testId}
             />
             <TestNavBar {...props} />
-            {hasUser ? <TestNotes {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <TestNotes {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />
@@ -318,7 +335,11 @@ const ApplicationViews = (props) => {
               testId={props.match.params.testId}
             />
             <TestNavBar {...props} />
-            {hasUser ? <TestDirections {...props} /> : <Redirect to="/login" />}
+            {hasUser ? (
+              <TestDirections {...props} />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </>
         )}
       />

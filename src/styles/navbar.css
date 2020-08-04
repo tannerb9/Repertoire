@@ -11,8 +11,12 @@ body {
   padding: 0;
 }
 
-.container-cards {
+/* .container-cards {
   margin-left: 5px;
+} */
+
+a.active {
+  border-bottom: 1px solid rgba(32, 34, 36, 0.5);
 }
 
 .container-logo {
@@ -31,7 +35,7 @@ body {
 .tapbar {
   padding-top: 5px;
   margin-bottom: 0px;
-  padding-bottom: 9px;
+  padding-bottom: 6px;
   border-top: 0.25px solid #3d4044;
   position: fixed;
   bottom: 0;
@@ -48,6 +52,7 @@ body {
 .nav-link p {
   margin-top: 0px;
   align-self: center;
+  padding: 0 1px 1px 1px;
 }
 
 .nav-link img {
@@ -58,8 +63,8 @@ body {
   color: rgb(32, 34, 36);
 }
 
-.nav-link p:active {
-  border-bottom: 3px black;
+p.active {
+  border-bottom: 1px solid rgba(32, 34, 36, 0.5);
 }
 
 .brandName {

@@ -9,8 +9,11 @@ const TapBar = (props) => {
       <ul className="container tapbar">
         <li>
           <Link className="nav-link" to="/recipes">
-            <img src={require("../../Icons/literature-50.png")} alt="Recipes" />
-            <p className="active">Recipes</p>
+            <img
+              src={require("../../Icons/literature-50.png")}
+              alt="Recipes"
+            />
+            <p className={props.isRecipe ? "active" : null}>Recipes</p>
           </Link>
         </li>
         {props.isRecipe ? (
@@ -61,8 +64,11 @@ const TapBar = (props) => {
         ) : null}
         <li>
           <Link className="nav-link" to="/tests">
-            <img src={require("../../Icons/test-folder-50.png")} alt="Tests" />
-            <p className="active">Tests</p>
+            <img
+              src={require("../../Icons/test-folder-50.png")}
+              alt="Tests"
+            />
+            <p className={props.isTest ? "active" : null}>Tests</p>
           </Link>
         </li>
       </ul>

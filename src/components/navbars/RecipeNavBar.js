@@ -8,20 +8,38 @@ const RecipeNavBar = (props) => {
     <nav className="recipeNavBar">
       <ul className="container tapbar">
         <li>
-          <Link className="nav-link" to={`/recipe/${recipeId}`}>
-            <img src={require("../../Icons/bulleted-list-50.png")} alt="" />
+          <Link
+            className={`nav-link ${props.isOverview ? "active" : ""}`}
+            to={`/recipe/${recipeId}`}
+          >
+            <img
+              src={require("../../Icons/bulleted-list-50.png")}
+              alt=""
+            />
             <p>Overview</p>
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to={`/recipe/${recipeId}/notes`}>
-            <img src={require("../../Icons/chat-bubble-50.png")} alt="" />
+          <Link
+            className={`nav-link ${props.isNotes ? "active" : ""}`}
+            to={`/recipe/${recipeId}/notes`}
+          >
+            <img
+              src={require("../../Icons/chat-bubble-50.png")}
+              alt=""
+            />
             <p>Notes</p>
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to={`/recipe/${recipeId}/directions`}>
-            <img src={require("../../Icons/numbered-list-150.png")} alt="" />
+          <Link
+            className={`nav-link ${props.isDirections ? "active" : ""}`}
+            to={`/recipe/${recipeId}/directions`}
+          >
+            <img
+              src={require("../../Icons/numbered-list-150.png")}
+              alt=""
+            />
             <p>Directions</p>
           </Link>
         </li>
