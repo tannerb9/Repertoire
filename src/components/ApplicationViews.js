@@ -269,7 +269,7 @@ const ApplicationViews = (props) => {
               setHasUser={setHasUser}
               testId={props.match.params.testId}
             />
-            <TestNavBar {...props} />
+            <TestNavBar isOverview={true} {...props} />
             {hasUser ? (
               <FullTestCard
                 testId={props.match.params.testId}
@@ -313,7 +313,7 @@ const ApplicationViews = (props) => {
               setHasUser={setHasUser}
               testId={props.match.params.testId}
             />
-            <TestNavBar {...props} />
+            <TestNavBar isNotes={true} {...props} />
             {hasUser ? (
               <TestNotes {...props} />
             ) : (
@@ -334,7 +334,7 @@ const ApplicationViews = (props) => {
               setHasUser={setHasUser}
               testId={props.match.params.testId}
             />
-            <TestNavBar {...props} />
+            <TestNavBar isDirections={true} {...props} />
             {hasUser ? (
               <TestDirections {...props} />
             ) : (
