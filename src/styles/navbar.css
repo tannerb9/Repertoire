@@ -11,9 +11,14 @@ body {
   padding: 0;
 }
 
-/* .container-cards {
-  margin-left: 5px;
-} */
+.container-cards {
+  margin-top: 63px;
+  margin-bottom: 59px;
+}
+
+.mainBody {
+  margin-top: 70px;
+}
 
 a.active {
   border-bottom: 1px solid rgba(32, 34, 36, 0.5);
@@ -30,6 +35,11 @@ a.active {
 .topnav {
   padding-bottom: 3px;
   border-bottom: 0.25px solid #3d4044;
+  top: 0px;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  padding-top: 10px;
 }
 
 .tapbar {
@@ -59,7 +69,8 @@ a.active {
   align-self: center;
 }
 
-.nav-link:visited {
+.nav-link:visited,
+.nav-link {
   color: rgb(32, 34, 36);
 }
 

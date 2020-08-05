@@ -22,8 +22,10 @@ const RecipeNotes = (props) => {
         <h3>Notes</h3>
       </div>
       <div className="container-notes">
-        {notes.map((note) => (
-          <p key={note.id}>{note.info}</p>
+        {notes.map((note, idx) => (
+          <p key={note.id}>
+            {idx + 1}. {note.info}
+          </p>
         ))}
       </div>
     </>

@@ -32,8 +32,8 @@ const FullTestCard = (props) => {
         <p className="prep-cookTime">Prep Time: {test.prepTime}</p>
         <p className="prep-cookTime">Cook Time: {test.cookTime}</p>
       </div>
-      <div className="mainBody">
-        <h3>Ingredients</h3>
+      <div className="ingContainer">
+        <h3 className="ingHeader">Ingredients</h3>
         <div className="container-ingredients">
           {ingredients.map((ingredient) => (
             <p key={ingredient.id}>{ingredient.info}</p>
@@ -48,9 +48,10 @@ const FullTestCard = (props) => {
         </button>
         <button
           onClick={() => {
-            DataManager.delete("recipes", props.match.params.testId).then(() =>
-              props.history.push("/tests")
-            );
+            DataManager.delete(
+              "recipes",
+              props.match.params.testId
+            ).then(() => props.history.push("/tests"));
           }}
         >
           &#x2718; Delete

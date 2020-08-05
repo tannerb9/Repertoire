@@ -6,11 +6,13 @@ const TestNotes = (props) => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    DataManager.getWithObjs("recipes", props.match.params.testId, "notes").then(
-      (test) => {
-        setNotes(test.notes);
-      }
-    );
+    DataManager.getWithObjs(
+      "recipes",
+      props.match.params.testId,
+      "notes"
+    ).then((test) => {
+      setNotes(test.notes);
+    });
   }, [props.match.params.testId]);
 
   // REMOVE H3 NOTES ONCE TAB IS INDICATED VIA UNDERLINE ETC
@@ -20,8 +22,10 @@ const TestNotes = (props) => {
         <h3>Notes</h3>
       </div>
       <div className="container-notes">
-        {notes.map((note) => (
-          <p key={note.id}>{note.info}</p>
+        {notes.map((note, idx) => (
+          <p key={note.id}>
+            {idx + 1}. {note.info}
+          </p>
         ))}
       </div>
     </>

@@ -32,15 +32,34 @@ h3 {
   padding-bottom: 8px;
 }
 
-.mainBody {
+.ingContainer {
+  margin-bottom: 60px;
   margin-left: 5px;
 }
 
-.container-ingredients,
-.container-notes > p,
-.container-directions > p {
+.ingContainer > h3 {
   margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.mainBody,
+.container-notes,
+.container-directions,
+.container-ingredients {
+  margin-left: 10px;
+}
+
+.mainBody > h3 {
+  margin-bottom: 10px;
+}
+
+.container-ingredients > p,
+.container-notes > p,
+.container-directions > p,
+.mainBody > p {
+  margin-left: 10px;
   padding-bottom: 3px;
+  margin-top: 5px;
 }
 
 .prep-cookTime {

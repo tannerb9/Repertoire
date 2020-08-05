@@ -21,8 +21,10 @@ const TestDirections = (props) => {
         <h3>Directions</h3>
       </div>
       <div className="container-directions">
-        {directions.map((direction) => (
-          <p key={direction.id}>{direction.info}</p>
+        {directions.map((direction, idx) => (
+          <p key={direction.id}>
+            {idx + 1}. {direction.info}
+          </p>
         ))}
       </div>
     </>

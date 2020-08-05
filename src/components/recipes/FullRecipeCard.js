@@ -29,11 +29,15 @@ const FullRecipeCard = (props) => {
     <>
       <div className="mainBody">
         <h3>{recipe.title}</h3>
-        <p className="prep-cookTime">Prep Time: {recipe.prepTime} minutes</p>
-        <p className="prep-cookTime">Cook Time: {recipe.cookTime} minutes</p>
+        <p className="prep-cookTime">
+          Prep Time: {recipe.prepTime} minutes
+        </p>
+        <p className="prep-cookTime">
+          Cook Time: {recipe.cookTime} minutes
+        </p>
       </div>
-      <div className="mainBody">
-        <h3>Ingredients</h3>
+      <div className="ingContainer">
+        <h3 className="ingHeader">Ingredients</h3>
         <div className="container-ingredients">
           {ingredients.map((ingredient) => (
             <p key={ingredient.id}>{ingredient.info}</p>
@@ -49,9 +53,10 @@ const FullRecipeCard = (props) => {
       </button>
       <button
         onClick={() => {
-          DataManager.delete("recipes", props.match.params.recipeId).then(() =>
-            props.history.push("/recipes")
-          );
+          DataManager.delete(
+            "recipes",
+            props.match.params.recipeId
+          ).then(() => props.history.push("/recipes"));
         }}
       >
         &#x2718; Delete
