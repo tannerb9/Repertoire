@@ -28,7 +28,26 @@ const FullRecipeCard = (props) => {
   return (
     <>
       <div className="mainBody">
-        <h3>{recipe.title}</h3>
+        <div className="recipe-title recipe-buttons">
+          <h3>{recipe.title}</h3>
+          <button
+            onClick={() => {
+              props.history.push(`/recipe/${props.recipeId}/edit`);
+            }}
+          >
+            &#x270e; Edit
+          </button>
+          <button
+            onClick={() => {
+              DataManager.delete(
+                "recipes",
+                props.match.params.recipeId
+              ).then(() => props.history.push("/recipes"));
+            }}
+          >
+            &#x2718; Delete
+          </button>
+        </div>
         <p className="prep-cookTime">
           Prep Time: {recipe.prepTime} minutes
         </p>
@@ -44,23 +63,6 @@ const FullRecipeCard = (props) => {
           ))}
         </div>
       </div>
-      <button
-        onClick={() => {
-          props.history.push(`/recipe/${props.recipeId}/edit`);
-        }}
-      >
-        &#x270e; Edit
-      </button>
-      <button
-        onClick={() => {
-          DataManager.delete(
-            "recipes",
-            props.match.params.recipeId
-          ).then(() => props.history.push("/recipes"));
-        }}
-      >
-        &#x2718; Delete
-      </button>
     </>
   );
 };

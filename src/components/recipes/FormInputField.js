@@ -5,7 +5,10 @@ const FormInputField = (props) => {
   const ingId = `ingredient-${props.idx}`;
 
   return (
-    <div className="hidden" key={`ingredient-${props.idx}`}>
+    <div
+      className="hidden edit-input-field"
+      key={`ingredient-${props.idx}`}
+    >
       <label htmlFor={ingId}>{`#${props.idx + 1}`}</label>
       <input
         type="text"
@@ -17,9 +20,14 @@ const FormInputField = (props) => {
         onChange={props.handleDynamicChange}
       />
       <button
+        className="delete-btn"
         onClick={(evt) => {
           evt.preventDefault();
-          removeItem(props.ingredients, props.idx, props.setIngredients);
+          removeItem(
+            props.ingredients,
+            props.idx,
+            props.setIngredients
+          );
         }}
       >
         &#x2718;

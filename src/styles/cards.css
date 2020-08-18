@@ -65,3 +65,21 @@ h3 {
 .prep-cookTime {
   margin-left: 5px;
 }
+
+.recipe-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.recipe-title > button:first-of-type {
+  margin-left: auto;
+}
+
+.recipe-title > button {
+  height: 25px;
+  align-self: center;
+}
+
+.recipe-title > h3 {
+  margin: 0 0 5px 0;
+}

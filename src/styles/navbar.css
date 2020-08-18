@@ -33,13 +33,13 @@ a.active {
 }
 
 .topnav {
-  padding-bottom: 3px;
+  padding-bottom: 5px;
   border-bottom: 0.25px solid #3d4044;
   top: 0px;
   position: fixed;
   width: 100%;
   background-color: white;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .tapbar {

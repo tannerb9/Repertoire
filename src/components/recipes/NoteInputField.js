@@ -4,7 +4,7 @@ import { removeItem } from "../../helpers/functions";
 const NoteInputField = (props) => {
   const noteId = `note-${props.idx}`;
   return (
-    <div key={`note-${props.idx}`}>
+    <div className="edit-input-field" key={`note-${props.idx}`}>
       <label htmlFor={noteId}>{`#${props.idx + 1}`}</label>
       <input
         type="text"
@@ -13,11 +13,16 @@ const NoteInputField = (props) => {
         id={noteId}
         className="info"
         value={props.isNote ? props.notes[props.idx].info : undefined}
-        value={props.isIng ? props.ingredients[props.idx].info : undefined}
-        value={props.isDir ? props.directions[props.idx].info : undefined}
+        value={
+          props.isIng ? props.ingredients[props.idx].info : undefined
+        }
+        value={
+          props.isDir ? props.directions[props.idx].info : undefined
+        }
         onChange={props.handleDynamicChange}
       />
       <button
+        className="delete-btn"
         onClick={(evt) => {
           evt.preventDefault();
           return (
@@ -27,11 +32,19 @@ const NoteInputField = (props) => {
                 : null}
 
               {props.isIng
-                ? removeItem(props.ingredients, props.idx, props.setIngredients)
+                ? removeItem(
+                    props.ingredients,
+                    props.idx,
+                    props.setIngredients
+                  )
                 : null}
 
               {props.isNote
-                ? removeItem(props.directions, props.idx, props.setDirections)
+                ? removeItem(
+                    props.directions,
+                    props.idx,
+                    props.setDirections
+                  )
                 : null}
             </>
           );

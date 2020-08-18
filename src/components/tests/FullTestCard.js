@@ -28,7 +28,26 @@ const FullTestCard = (props) => {
   return (
     <>
       <div className="mainBody">
-        <h3>{test.title}</h3>
+        <div className="recipe-title">
+          <h3>{test.title}</h3>
+          <button
+            onClick={() => {
+              props.history.push(`/test/${props.testId}/edit`);
+            }}
+          >
+            &#x270e; Edit
+          </button>
+          <button
+            onClick={() => {
+              DataManager.delete(
+                "recipes",
+                props.match.params.testId
+              ).then(() => props.history.push("/tests"));
+            }}
+          >
+            &#x2718; Delete
+          </button>
+        </div>
         <p className="prep-cookTime">Prep Time: {test.prepTime}</p>
         <p className="prep-cookTime">Cook Time: {test.cookTime}</p>
       </div>
@@ -39,23 +58,6 @@ const FullTestCard = (props) => {
             <p key={ingredient.id}>{ingredient.info}</p>
           ))}
         </div>
-        <button
-          onClick={() => {
-            props.history.push(`/test/${props.testId}/edit`);
-          }}
-        >
-          &#x270e; Edit
-        </button>
-        <button
-          onClick={() => {
-            DataManager.delete(
-              "recipes",
-              props.match.params.testId
-            ).then(() => props.history.push("/tests"));
-          }}
-        >
-          &#x2718; Delete
-        </button>
         {/* <button
           onClick={() => {
             window.history.back();
