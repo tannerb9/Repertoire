@@ -5,6 +5,7 @@ export function handleFieldChange(evt, obj, func) {
 }
 
 export function removeItem(arr, idx, func) {
+  debugger;
   const copyOfArr = [...arr];
   copyOfArr.splice(idx, 1);
   func(copyOfArr);

@@ -88,12 +88,14 @@ const TestEditForm = (props) => {
   }, [props.match.params.testId]);
 
   useEffect(() => {
-    DataManager.getWithObjs("recipes", props.match.params.testId, "notes").then(
-      (recipe) => {
-        setRecipe(recipe);
-        setNotes(recipe.notes);
-      }
-    );
+    DataManager.getWithObjs(
+      "recipes",
+      props.match.params.testId,
+      "notes"
+    ).then((recipe) => {
+      setRecipe(recipe);
+      setNotes(recipe.notes);
+    });
   }, [props.match.params.testId]);
 
   useEffect(() => {
@@ -118,7 +120,9 @@ const TestEditForm = (props) => {
             id="title"
             value={recipe.title}
             autoFocus
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="prepTime">Prep Time</label>
           <input
@@ -126,7 +130,9 @@ const TestEditForm = (props) => {
             id="prepTime"
             value={recipe.prepTime}
             placeholder="Numbers only"
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="cookTime">Cook Time</label>
           <input
@@ -134,7 +140,9 @@ const TestEditForm = (props) => {
             id="cookTime"
             value={recipe.cookTime}
             placeholder="Numbers only"
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="ingredient">Ingredients</label>
           {ingredients.map((val, idx) => (
@@ -152,7 +160,9 @@ const TestEditForm = (props) => {
           <input
             type="button"
             value="Add Another Ingredient"
-            onClick={() => appendItem(ingredients, emptyObj, setIngredients)}
+            onClick={() =>
+              appendItem(ingredients, emptyObj, setIngredients)
+            }
           />
           <label htmlFor="note">Notes</label>
           {notes.map((val, idx) => (
@@ -188,7 +198,9 @@ const TestEditForm = (props) => {
           <input
             type="button"
             value="Add Another Direction"
-            onClick={() => appendItem(directions, emptyObj, setDirections)}
+            onClick={() =>
+              appendItem(directions, emptyObj, setDirections)
+            }
           />
           <div>
             <label>
@@ -230,7 +242,11 @@ const TestEditForm = (props) => {
               Test
             </label>
           </div>
-          <button type="submit" disabled={isLoading}>
+          <button
+            className="submit-btn"
+            type="submit"
+            disabled={isLoading}
+          >
             Submit
           </button>
         </div>

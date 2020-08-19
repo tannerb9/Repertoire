@@ -21,7 +21,7 @@ body {
 }
 
 a.active {
-  border-bottom: 1px solid rgba(32, 34, 36, 0.5);
+  border-bottom: 1px solid rgba(32, 34, 36, 1);
 }
 
 .container-logo {
@@ -75,7 +75,7 @@ a.active {
 }
 
 p.active {
-  border-bottom: 1px solid rgba(32, 34, 36, 0.5);
+  border-bottom: 1px solid rgba(32, 34, 36, 1);
 }
 
 .brandName {
