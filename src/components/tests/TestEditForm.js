@@ -113,6 +113,7 @@ const TestEditForm = (props) => {
     <form onSubmit={updateAll}>
       <fieldset>
         <div className="formgrid">
+          <h1>Edit Version</h1>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -159,7 +160,8 @@ const TestEditForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Ingredient"
+            className="new-field-btn"
+            value="New Ingredient"
             onClick={() =>
               appendItem(ingredients, emptyObj, setIngredients)
             }
@@ -179,7 +181,8 @@ const TestEditForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Note"
+            className="new-field-btn"
+            value="New Note"
             onClick={() => appendItem(notes, emptyObj, setNotes)}
           />
           <label htmlFor="direction">Directions</label>
@@ -197,7 +200,8 @@ const TestEditForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Direction"
+            className="new-field-btn"
+            value="New Direction"
             onClick={() =>
               appendItem(directions, emptyObj, setDirections)
             }

@@ -32,7 +32,9 @@ const GenericNewForm = (props) => {
 
     let newId;
     {
-      props.isTest ? (recipe.versionNumber = 1) : (recipe.versionNumber = 0);
+      props.isTest
+        ? (recipe.versionNumber = 1)
+        : (recipe.versionNumber = 0);
     }
     recipe.userId = userId;
     {
@@ -78,21 +80,27 @@ const GenericNewForm = (props) => {
             required
             id="title"
             autoFocus
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="prepTime">Prep Time</label>
           <input
             type="number"
             id="prepTime"
             placeholder="In minutes"
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="cookTime">Cook Time</label>
           <input
             type="number"
             id="cookTime"
             placeholder="In minutes"
-            onChange={(evt) => handleFieldChange(evt, recipe, setRecipe)}
+            onChange={(evt) =>
+              handleFieldChange(evt, recipe, setRecipe)
+            }
           />
           <label htmlFor="ingredient">Ingredients</label>
           {ingredients.map((val, idx) => (
@@ -108,8 +116,11 @@ const GenericNewForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Ingredient"
-            onClick={() => appendItem(ingredients, emptyObj, setIngredients)}
+            className="new-field-btn"
+            value="New Ingredient"
+            onClick={() =>
+              appendItem(ingredients, emptyObj, setIngredients)
+            }
           />
           <label htmlFor="note">Notes</label>
           {notes.map((val, idx) => (
@@ -125,7 +136,8 @@ const GenericNewForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Note"
+            className="new-field-btn"
+            value="New Note"
             onClick={() => appendItem(notes, emptyObj, setNotes)}
           />
           <label htmlFor="direction">Directions</label>
@@ -142,10 +154,17 @@ const GenericNewForm = (props) => {
           ))}
           <input
             type="button"
-            value="Add Another Direction"
-            onClick={() => appendItem(directions, emptyObj, setDirections)}
+            className="new-field-btn"
+            value="New Direction"
+            onClick={() =>
+              appendItem(directions, emptyObj, setDirections)
+            }
           />
-          <button type="submit" disabled={isLoading}>
+          <button
+            className="submit-btn"
+            type="submit"
+            disabled={isLoading}
+          >
             Submit
           </button>
         </div>
