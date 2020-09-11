@@ -78,6 +78,7 @@ h3 {
 .recipe-title > button {
   height: 25px;
   align-self: center;
+  margin-right: 3px;
 }
 
 .recipe-title > h3 {
