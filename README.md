@@ -3,12 +3,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Repertoire
 
 <div align="center">
-  <div style="display: flex; background-color:gray">
-    <img src="src/Icons/RecipeList.png" style="max-width: 180px; margin-inline: 0 2%"/>
-    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; max-width: 180px; margin-inline: 0 2%"/>
-    <img src="src/Icons/RecipeEdit.png" style="max-width: 180px; margin-inline: 0 2%"/>
-    <img src="src/Icons/TestList.png" style="max-width: 180px; margin-inline: 0 2%"/>
-    <img src="src/Icons/VersionList.png" style="max-width: 180px; margin-inline: 0 2%"/>
+  <div style="display: flexd">
+    <img src="src/Icons/RecipeList.png" style="width: 18%; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
+    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18%; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
+    <img src="src/Icons/RecipeEdit.png" style="width: 18%; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
+    <img src="src/Icons/TestList.png" style="width: 18%; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
+    <img src="src/Icons/VersionList.png" style="width: 18%; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
   </div>
 </div>
 
