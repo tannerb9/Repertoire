@@ -7,15 +7,8 @@ An app to combine your recipe journal and cookbook into one! Repertoire is a rec
 <br/>
 
 <div align="center">
-  <img src="src/Icons/RecipeList.png" />
-  <img src="src/Icons/RecipeCard.png" />
-  <img src="src/Icons/RecipeEdit.png" />
+  <img src="src/Icons/RepertoireSnaps.png" />
 </div>
-<div align="center">
-  <img src="src/Icons/TestList.png" />
-  <img src="src/Icons/VersionList.png" />
-</div>
-<br/>
 
 #### Key Features:
 
