@@ -2,6 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Repertoire
 
+<div align="center">
+  <div style="display: flex;">
+    <img src="src/Icons/RecipeList.png" style="width: 18% margin-inline: 0 2%"/>
+    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18% margin-inline: 0 2%"/>
+    <img src="src/Icons/RecipeEdit.png" style="width: 18% margin-inline: 0 2%"/>
+    <img src="src/Icons/TestList.png" style="width: 18% margin-inline: 0 2%"/>
+    <img src="src/Icons/VersionList.png" style="width: 18% margin-inline: 0 2%"/>
+  </div>
+</div>
+
 An app to combine your recipe journal and cookbook into one! Repertoire allows users to differentiate between finalized and test versions of a recipe.
 
 #### Key Features:
