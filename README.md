@@ -29,7 +29,7 @@ An app to combine your recipe journal and cookbook into one! Repertoire allows u
 
 #### ERD
 
-<img src="src/Icons/RepertoireERD.png" width="1000" height="auto">
+<img src="src/Icons/RepertoireERD.png" width="100%" height="auto">
 
 #### Contributors
 
