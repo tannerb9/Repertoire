@@ -4,8 +4,6 @@
 
 An app to combine your recipe journal and cookbook into one! Repertoire is a recipe manager that differentiates finalized recipes from test recipes to help easily track the progression of a recipe until it's finalized. Users can also create multiple versions of the same test recipe to view differences or review notes between versions.
 
-<br/>
-
 <div align="center">
   <img src="src/Icons/RepertoireSnaps.png" />
 </div>
