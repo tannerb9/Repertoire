@@ -4,11 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 <div align="center">
   <div style="display: flex;">
-    <img src="src/Icons/RecipeList.png" style="width: 18% margin-inline: 0 2%"/>
-    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18% margin-inline: 0 2%"/>
-    <img src="src/Icons/RecipeEdit.png" style="width: 18% margin-inline: 0 2%"/>
-    <img src="src/Icons/TestList.png" style="width: 18% margin-inline: 0 2%"/>
-    <img src="src/Icons/VersionList.png" style="width: 18% margin-inline: 0 2%"/>
+    <img src="src/Icons/RecipeList.png" style="width: 18%; margin-inline: 0 2%"/>
+    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18%; margin-inline: 0 2%"/>
+    <img src="src/Icons/RecipeEdit.png" style="width: 18%; margin-inline: 0 2%"/>
+    <img src="src/Icons/TestList.png" style="width: 18%; margin-inline: 0 2%"/>
+    <img src="src/Icons/VersionList.png" style="width: 18%; margin-inline: 0 2%"/>
   </div>
 </div>
 
