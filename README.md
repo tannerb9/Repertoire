@@ -1,6 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Repertoire
+<div align="center">
+<h1>Repertoire</h1>
+</div>
 
 An app to combine your recipe journal and cookbook into one! Repertoire is a recipe manager that differentiates finalized recipes from test recipes to help easily track the progression of a recipe until it's finalized. Users can also create multiple versions of the same test recipe to view differences or review notes between versions.
 
