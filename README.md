@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Repertoire
 
 <div align="center">
-  <div style="display: flexd">
+  <div style="display: flex">
     <img src="src/Icons/RecipeList.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
     <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
     <img src="src/Icons/RecipeEdit.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
