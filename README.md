@@ -6,13 +6,14 @@ An app to combine your recipe journal and cookbook into one! Repertoire allows u
 
 <div align="center">
   <div style="display: flex">
-    <img src="src/Icons/RecipeList.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
-    <img src="src/Icons/RecipeCard.png" style="vertical-align: top; width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
-    <img src="src/Icons/RecipeEdit.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
-    <img src="src/Icons/TestList.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
-    <img src="src/Icons/VersionList.png" style="width: 18% !important; margin-inline: 0 2%; border: .5px solid black; border-radius:5px"/>
+    <img src="src/Icons/RecipeList.png" />
+    <img src="src/Icons/RecipeCard.png" />
+    <img src="src/Icons/RecipeEdit.png" />
+    <img src="src/Icons/TestList.png" />
+    <img src="src/Icons/VersionList.png" />
   </div>
 </div>
+<br/>
 
 #### Key Features:
 
