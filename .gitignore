@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /api/Database.json
+
+/env
+.env
+
+media/
